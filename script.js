@@ -34,16 +34,13 @@ function requestWeather(city) {
 }
 
 // Summarized weather scenarios & ids
-var thunder = 200;
-var thunderstorm = [201, 202, 230, 231, 232, 233];
-var heavyRain = [302, 500, 502, 511, 521, 522];
-var lightRain = [501, 520, 300, 301];
-var snow = [601, 602, 610, 611, 612, 622];
-var lightSnow = [623, 600, 621];
-var mist = [700, 711, 721, 731, 741, 751, 900];
-var clearSky = 800;
-var partlyCloudy = [801, 802, 803];
-var overcast = 804;
+var storm = [200, 201, 202, 230, 231, 232, 233];
+var rain = [302, 500, 502, 511, 521, 522];
+var partlyRain = [501, 520, 300, 301];
+var snow = [601, 602, 610, 611, 612, 622, 623, 600, 621];
+var sun = 800;
+var partlyCloud = [801, 802, 803];
+var cloud = [804, 700, 711, 721, 731, 741, 751, 900];
 
 // pokemon conditions:
 // Sunny/Clear = Grass, Ground, and Fire

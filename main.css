@@ -1,0 +1,9 @@
+body,
+html {
+  background-color: #003a70;
+}
+
+.is-4by3 {
+  background-color: #ffcb05;
+  padding: 15px;
+}
