@@ -1,1 +1,18 @@
-adding code to stylesheet 
+body,
+html {
+  background-color: #003a70;
+}
+
+header {
+  height: 300px;
+  width: 100%;
+  padding: 50px;
+}
+
+#logo {
+  width: 250px;
+}
+
+.image {
+  background-color: #ffcb05;
+}
