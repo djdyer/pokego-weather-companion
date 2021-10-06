@@ -33,6 +33,27 @@ function requestWeather(city) {
     });
 }
 
+// Summarized weather scenarios & ids
+var thunder = 200;
+var thunderstorm = [201, 202, 230, 231, 232, 233];
+var heavyRain = [302, 500, 502, 511, 521, 522];
+var lightRain = [501, 520, 300, 301];
+var snow = [601, 602, 610, 611, 612, 622];
+var lightSnow = [623, 600, 621];
+var mist = [700, 711, 721, 731, 741, 751, 900];
+var clearSky = 800;
+var partlyCloudy = [801, 802, 803];
+var overcast = 804;
+
+// pokemon conditions:
+// Sunny/Clear = Grass, Ground, and Fire
+// Windy = Dragon, Flying, and Psychic
+// Partially Cloudy = Normal and Rock
+// Cloudy = Fairy, Fighting, and Poison
+// Rainy = Water, Electric, and Bug
+// Snow = Ice and Steel
+// Fog = Ghost and Dark
+
 //   PokemonGo - Weather Boost
 fetch("https://pokemon-go1.p.rapidapi.com/weather_boosts.json", {
   method: "GET",
