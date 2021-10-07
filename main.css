@@ -3,7 +3,73 @@ html {
   background-color: #003a70;
 }
 
+header {
+  top: 0;
+  left: 0;
+  height: 300px;
+  width: 100%;
+  padding: 30px;
+  background-color: #3d7dca;
+}
+
+section {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  margin: 40px auto;
+  text-align: center;
+}
+
+#logo {
+  position: absolute;
+  width: 200px;
+  margin: 0 auto;
+}
+
+#stats {
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+}
+
+#labels,
+#weatherValues {
+  display: flex;
+  flex-direction: column;
+  padding: 25px;
+  text-align: left;
+}
+
+.icons {
+  width: 90px;
+  margin: 5px;
+}
+
+h1 {
+  color: white;
+  font-weight: 900;
+  font-size: 24px;
+  padding: 5px;
+}
+h2 {
+  font-size: 22px;
+  color: white;
+}
+
+main {
+  margin: 40px auto;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
 .is-4by3 {
   background-color: #ffcb05;
-  padding: 15px;
+}
+
+.card {
+  margin: 25px;
+  box-shadow: 0 2px 2px rgb(38, 38, 39);
+  padding: 20px;
+  width: 400px;
 }
