@@ -51,21 +51,6 @@ var cloud = [804, 700, 711, 721, 731, 741, 751, 900];
 // Snow = Ice and Steel
 // Fog = Ghost and Dark
 
-//   PokemonGo - Weather Boost
-fetch("https://pokemon-go1.p.rapidapi.com/weather_boosts.json", {
-  method: "GET",
-  headers: {
-    "x-rapidapi-host": "pokemon-go1.p.rapidapi.com",
-    "x-rapidapi-key": "4be5ec2e63msh2818ea53452dcdcp12e586jsn7ea1810f83a2",
-  },
-})
-  .then((response) => {
-    console.log("Weather Boost: ", response.json());
-  })
-  .catch((err) => {
-    console.error(err);
-  });
-
 //   PokemonGo - Types
 fetch("https://pokemon-go1.p.rapidapi.com/pokemon_types.json", {
   method: "GET",
@@ -84,6 +69,7 @@ fetch("https://pokemon-go1.p.rapidapi.com/pokemon_types.json", {
       })
       .slice(0, 150);
     console.log(newArray); // contains only Normal pokemon
+    printCard(data[0].pokemon_id, data[0].pokemon_name, data[0].type);
   })
   .catch((err) => {
     console.error(err);
@@ -103,3 +89,9 @@ fetch("https://pokemon-go1.p.rapidapi.com/pokemon_stats.json", {
   .catch((err) => {
     console.error(err);
   });
+
+function printCard(id, name, type) {
+  console.log(id);
+  console.log(name);
+  console.log(type);
+}
