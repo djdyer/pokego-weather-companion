@@ -9,45 +9,80 @@
       href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css"
     />
     <link rel="stylesheet" href="./main.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito:wght@200&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
     <header>
-      <div><img id="logo" src="./assets/logo/pokego_logo_final.png" /></div>
+      <nav>
+        <div>
+          <img id="logo" src="./assets/logo/pokego_logo_final.png" />
+        </div>
+        <div>
+          <a href="/index.html">SEARCH</a>
+          <a href="https://pokemongolive.com/en/">PLAY</a>
+        </div>
+      </nav>
     </header>
 
-   
-
-    <!-- Holds weather block -->
+    <!-- Holds WEATHER & TYPES block -->
     <section>
-      <div>
+      <div id=weatherBlock>
         <figure>
           <img id="weather" src="./assets/gifs/sun.gif" />
         </figure>
-
+        <div>
+          <h1 id="city">City<h1>
+          <h1 id="date">Date<h1>
+        </div>
         <div id="stats">
-
-          <h1 id="city">Atlanta<h1>
-          <h1 id="date">Thursday, October 7th 2021<h1>
-        
           <div id="labels">
-            <h2>Temp:</h2>
-            <h2>Humidity:</h2>
-            <h2>Wind:</h2>
+            <h2>TEMP:</h2>
+            <h2>HUMIDITY:</h2>
+            <h2>WIND:</h2>
           </div>
 
-          <div id="weatherValues">
+          <div id="values">
             <h2 id="temp">95°</h2>
             <h2 id="humid">35%</h2>
             <h2 id="wind">2MPH</h2>
           </div>
         </div>
-   
+   </div>
+
      <!-- Displays Boosted icons -->
-      <div>
-        <img class="icons" src="./assets/icons/fire.png"/>
-        <img class="icons" src="./assets/icons/grass.png"/>
-        <img class="icons" src="./assets/icons/ground.png"/>
-      </div>
+        <div id="boostedBlock">
+          <h1>CURRENTLY BOOSTED:</h1>
+          <p>Certain Pokémon will appear more frequently in weather conditions that correspond to their type. These Pokémon also tend to have higher CP and perform better in battle. As an added bonus, you will receive extra Stardust when you catch boosted Pokémon</p>
+          <div class="types">
+            <div class="typeDetail">
+              <img class="icons" id="icon1Img" src="./assets/icons/fire.png"/>
+              <div class="typesLock">
+                <h3 id="icon1Title">FIRE</h3>
+                <h4>Fire-type species are based on land animals known for their predatory instincts, such as Pyroar, Arcanine, and Heatmor.</h4>
+              </div>
+            </div>
+            <div class="typeDetail">
+              <img class="icons" id="icon2Img" src="./assets/icons/grass.png"/>
+              <div class="typesLock">
+                <h3 id="icon2Title">GRASS</h3>
+                <h4>Based on real-world plants and fungi, not necessarily grass. Often paired with poison to reflect the toxicity of several plants.</h4>
+              </div>
+            </div>
+            <div class="typeDetail">
+              <img class="icons" id="icon3Img" src="./assets/icons/ground.png"/>
+              <div class="typesLock">
+                <h3 id="icon3Title">GROUND</h3>
+                <h4>Possess power and abilities related to control of ground and earth, normally found in caves or rocky terrain.</h4>
+              </div>
+            </div>
+          </div>
+        </div>
+
     </section>
 
     <!-- Dropdown menu -->
@@ -58,7 +93,7 @@
           aria-haspopup="true"
           aria-controls="dropdown-menu"
         >
-          <span>TYPE</span>
+          <span>FILTER TYPE</span>
           <span class="icon is-small">
             <i class="fas fa-angle-down" aria-hidden="true"></i>
           </span>
@@ -74,134 +109,143 @@
     </div>
 
     <!-- All the cards -->
-    <main>
-    <!-- card 1 -->
-    <div class="card">
-      <div class="card-image">
-        <figure class="image is-4by3">
-          <img src="./assets/character_images/98.png" alt="Placeholder image" />
-        </figure>
-      </div>
-      <div class="card-content">
-        <div class="media">
-          <div class="media-left">
-            <figure class="image is-48x48">
-              <img src="./assets/icons/flying.png" alt="Placeholder image" />
-            </figure>
-          </div>
-          <div class="media-content">
-            <p class="title is-4">Bulbasar</p>
-            <p class="subtitle is-6">Boosted</p>
-          </div>
+    <main> 
+      <!-- card 1 -->
+      <!-- <div class="card">
+        <div class="card-image">
+          <figure class="image is-4by3">
+            <img src="./assets/character_images/98.png" alt="Placeholder image" />
+          </figure>
         </div>
-        <div class="content">Currently boosted in sunny weather!</div>
-        <progress class="progress is-warning" value="75" max="100">
-          75%
-        </progress>
-        <progress class="progress is-success" value="60" max="100">
-          60%
-        </progress>
-        <progress class="progress is-info" value="45" max="100">45%</progress>
-      </div>
-    </div>
-
-    <!-- card 2 -->
-    <div class="card">
-      <div class="card-image">
-        <figure class="image is-4by3">
-          <img
-            src="./assets/character_images/132.png"
-            alt="Placeholder image"
-          />
-        </figure>
-      </div>
-      <div class="card-content">
-        <div class="media">
-          <div class="media-left">
-            <figure class="image is-48x48">
-              <img src="./assets/icons/psychic.png" alt="Placeholder image" />
-            </figure>
+        <div class="card-content">
+          <div class="media">
+            <div class="media-left">
+              <figure class="image is-48x48">
+                <img src="./assets/icons/flying.png" alt="Placeholder image" />
+              </figure>
+            </div>
+            <div class="media-content">
+              <p class="title is-4">Bulbasar</p>
+              <p class="subtitle is-6">Boosted</p>
+            </div>
           </div>
-          <div class="media-content">
-            <p class="title is-4">Bulbasar</p>
-            <p class="subtitle is-6">Boosted</p>
-          </div>
+          <div>ATTACK</div>
+          <progress class="progress is-warning" value="75" max="100">
+            75%
+          </progress>
+          <div>DEFENSE</div>
+          <progress class="progress is-success" value="60" max="100">
+            60%
+          </progress>
+          <div>STAMINA</div>
+          <progress class="progress is-info" value="45" max="100">45%</progress>
         </div>
-        <div class="content">Currently boosted in sunny weather!</div>
-        <progress class="progress is-warning" value="75" max="100">
-          75%
-        </progress>
-        <progress class="progress is-success" value="60" max="100">
-          60%
-        </progress>
-        <progress class="progress is-info" value="45" max="100">45%</progress>
-      </div>
-    </div>
+      </div> -->
 
-    <!-- card 3 -->
-    <div class="card">
-      <div class="card-image">
-        <figure class="image is-4by3">
-          <img src="./assets/character_images/20.png" alt="Placeholder image" />
-        </figure>
-      </div>
-      <div class="card-content">
-        <div class="media">
-          <div class="media-left">
-            <figure class="image is-48x48">
-              <img src="./assets/icons/grass.png" alt="Placeholder image" />
-            </figure>
-          </div>
-          <div class="media-content">
-            <p class="title is-4">Bulbasar</p>
-            <p class="subtitle is-6">Boosted</p>
-          </div>
+      <!-- card 2 -->
+      <!-- <div class="card">
+        <div class="card-image">
+          <figure class="image is-4by3">
+            <img
+              src="./assets/character_images/132.png"
+              alt="Placeholder image"
+            />
+          </figure>
         </div>
-        <div class="content">Currently boosted in sunny weather!</div>
-        <progress class="progress is-warning" value="75" max="100">
-          75%
-        </progress>
-        <progress class="progress is-success" value="60" max="100">
-          60%
-        </progress>
-        <progress class="progress is-info" value="45" max="100">45%</progress>
-      </div>
-    </div>
-
-    <!-- card 4 -->
-    <div class="card">
-      <div class="card-image">
-        <figure class="image is-4by3">
-          <img src="./assets/character_images/25.png" alt="Placeholder image" />
-        </figure>
-      </div>
-      <div class="card-content">
-        <div class="media">
-          <div class="media-left">
-            <figure class="image is-48x48">
-              <img src="./assets/icons/fire.png" alt="Placeholder image" />
-            </figure>
+        <div class="card-content">
+          <div class="media">
+            <div class="media-left">
+              <figure class="image is-48x48">
+                <img src="./assets/icons/psychic.png" alt="Placeholder image" />
+              </figure>
+            </div>
+            <div class="media-content">
+              <p class="title is-4">Bulbasar</p>
+              <p class="subtitle is-6">Boosted</p>
+            </div>
           </div>
-          <div class="media-content">
-            <p class="title is-4">Bulbasar</p>
-            <p class="subtitle is-6">Boosted</p>
-          </div>
+          <div>ATTACK</div>
+          <progress class="progress is-warning" value="75" max="100">
+            75%
+          </progress>
+          <div>DEFENSE</div>
+          <progress class="progress is-success" value="60" max="100">
+            60%
+          </progress>
+          <div>STAMINA</div>
+          <progress class="progress is-info" value="45" max="100">45%</progress>
         </div>
-        <div class="content">Currently boosted in sunny weather!</div>
-        <progress class="progress is-warning" value="75" max="100">
-          75%
-        </progress>
-        <progress class="progress is-success" value="60" max="100">
-          60%
-        </progress>
-        <progress class="progress is-info" value="45" max="100">45%</progress>
-      </div>
-    </div>
+      </div> -->
 
-  </main>
+      <!-- card 3 -->
+      <!-- <div class="card">
+        <div class="card-image">
+          <figure class="image is-4by3">
+            <img src="./assets/character_images/20.png" alt="Placeholder image" />
+          </figure>
+        </div>
+        <div class="card-content">
+          <div class="media">
+            <div class="media-left">
+              <figure class="image is-48x48">
+                <img src="./assets/icons/grass.png" alt="Placeholder image" />
+              </figure>
+            </div>
+            <div class="media-content">
+              <p class="title is-4">Bulbasar</p>
+              <p class="subtitle is-6">Boosted</p>
+            </div>
+          </div>
+          <div>ATTACK</div>
+          <progress class="progress is-warning" value="75" max="100">
+            75%
+          </progress>
+          <div>DEFENSE</div>
+          <progress class="progress is-success" value="60" max="100">
+            60%
+          </progress>
+          <div>STAMINA</div>
+          <progress class="progress is-info" value="45" max="100">45%</progress>
+        </div>
+      </div> -->
 
-  <footer></footer>
+      <!-- card 4 -->
+      <!-- <div class="card">
+        <div class="card-image">
+          <figure class="image is-4by3">
+            <img src="./assets/character_images/25.png" alt="Placeholder image" />
+          </figure>
+        </div>
+        <div class="card-content">
+          <div class="media">
+            <div class="media-left">
+              <figure class="image is-48x48">
+                <img src="./assets/icons/fire.png" alt="Placeholder image" />
+              </figure>
+            </div>
+            <div class="media-content">
+              <p class="title is-4">Bulbasar</p>
+              <p class="subtitle is-6">Boosted</p>
+            </div>
+          </div>
+          <div>ATTACK</div>
+          <progress class="progress is-warning" value="75" max="100">
+            75%
+          </progress>
+          <div>DEFENSE</div>
+          <progress class="progress is-success" value="60" max="100">
+            60%
+          </progress>
+          <div>STAMINA</div>
+          <progress class="progress is-info" value="45" max="100">45%</progress>
+        </div>
+      </div> -->
+
+    </main>
+
+    <footer></footer>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
     <script src="./script.js"></script>
   </body>
 </html>
