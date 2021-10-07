@@ -3,27 +3,25 @@ var date = moment();
 $("#date").text(date.format("dddd, MMM Do YYYY"));
 
 // Button & input field
-$("#search").on("click", newSearch);
-var input = $(".input");
+var searchBtn = $("#search").on("click", newSearch);
+var input = $("#input");
 
+var higlyScopedVariable;
 // New search function takes city input to requestWeather
-function newSearch(event) {
-  event.preventDefault();
-  var city = input.val();
-  console.log(city);
-  requestWeather(city);
-  input.val("");
-  document.location.href = "main.html";
-}
-
 input.on("keypress", function (event) {
   if (event.keyCode === 13) {
     var city = input.val();
     requestWeather(city);
     input.val("");
-    document.location.href = "main.html";
   }
 });
+
+function newSearch(event) {
+  event.preventDefault();
+  var city = input.val();
+  requestWeather(city);
+  input.val("");
+}
 
 // WEATHER
 function requestWeather(city) {
@@ -37,6 +35,7 @@ function requestWeather(city) {
     })
     .then(function (data) {
       console.log("Current Weather: ", data); // data holds today's weather object
+      setTimeout("location.href = 'main.html';", 1500);
     });
 }
 
@@ -76,7 +75,7 @@ fetch("https://pokemon-go1.p.rapidapi.com/pokemon_types.json", {
       })
       .slice(0, 150);
     console.log("Types: ", newArray); // contains only 150 Normal pokemon
-    printCard(data[4].pokemon_id, data[4].pokemon_name, data[4].type);
+    // printCard(data.pokemon_id, data.pokemon_name, data.type);
   })
   .catch((err) => {
     console.error(err);
@@ -97,57 +96,68 @@ fetch("https://pokemon-go1.p.rapidapi.com/pokemon_stats.json", {
     console.error(err);
   });
 
-function printCard(id, name, type) {
-  const attackValue = 75;
-  const defenseValue = 100;
-  const staminaValue = 30;
-  console.log(id);
-  console.log(name);
-  console.log(type);
-  const card = $("<div>").addClass("card");
-  const cardImage = $("<div>").addClass("card-image");
-  const figure = $("<figure>").addClass("image is-4by3");
-  const charImage = $("<img>").attr(
-    "src",
-    "./assets/character_images/" + id + ".png"
-  );
-  figure.append(charImage);
-  cardImage.append(figure);
-  const cardContent = $("<div>").addClass("card-content");
-  const media = $("<div>").addClass("media");
-  const mediaLeft = $("<div>").addClass("media-left");
-  const typeFigure = $("<figure>").addClass("image is-48x48");
-  const typeImage = $("<img>").attr(
-    "src",
-    "./assets/icons/" + type[0].toLowerCase() + ".png"
-  );
-  typeFigure.append(typeImage);
-  mediaLeft.append(typeFigure);
-  media.append(media);
-  const details = $("<div>").addClass("media-content");
-  const title = $("<p>").addClass("title is-4").text(name);
-  const subTitle = $("<p>").addClass("subtitle is-6").text("Boosted!");
-  details.append(title, subTitle);
-  media.append(media, details);
-  const attack = $("<div>").text("ATTACK");
-  const progress1 = $("<progress>")
-    .addClass("progress is-warning")
-    .attr("value", attackValue)
-    .attr("max", "100")
-    .text(attackValue + "%");
-  const defense = $("<div>").text("DEFENSE");
-  const progress2 = $("<progress>")
-    .addClass("progress is-success")
-    .attr("value", defenseValue)
-    .attr("max", "100")
-    .text(defenseValue + "%");
-  const stamina = $("<div>").text("STAMINA");
-  const progress3 = $("<progress>")
-    .addClass("progress is-info")
-    .attr("value", staminaValue)
-    .attr("max", "100")
-    .text(staminaValue + "%");
-  cardContent.append(attack, progress1, defense, progress2, stamina, progress3);
-  card.append(cardImage, cardContent);
-  $("main").append(card);
-}
+var pokemonArray = [];
+
+// function printCard(id, name, type) {
+//   for (var i = 0; i < pokemonArray.length; i++) {
+//     const attackValue = 75;
+//     const defenseValue = 100;
+//     const staminaValue = 30;
+//     console.log(id);
+//     console.log(name);
+//     console.log(type);
+//     const card = $("<div>").addClass("card");
+//     const cardImage = $("<div>").addClass("card-image");
+//     const figure = $("<figure>").addClass("image is-4by3");
+//     const charImage = $("<img>").attr(
+//       "src",
+//       "./assets/character_images/" + id + ".png"
+//     );
+//     figure.append(charImage);
+//     cardImage.append(figure);
+//     const cardContent = $("<div>").addClass("card-content");
+//     const media = $("<div>").addClass("media");
+//     const mediaLeft = $("<div>").addClass("media-left");
+//     const typeFigure = $("<figure>").addClass("image is-48x48");
+//     const typeImage = $("<img>").attr(
+//       "src",
+//       "./assets/icons/" + type[i].toLowerCase() + ".png"
+//     );
+//     typeFigure.append(typeImage);
+//     mediaLeft.append(typeFigure);
+//     media.append(media);
+//     const details = $("<div>").addClass("media-content");
+//     const title = $("<p>").addClass("title is-4").text(name);
+//     const subTitle = $("<p>").addClass("subtitle is-6").text("Boosted!");
+//     details.append(title, subTitle);
+//     media.append(media, details);
+//     const attack = $("<div>").text("ATTACK");
+//     const progress1 = $("<progress>")
+//       .addClass("progress is-warning")
+//       .attr("value", attackValue)
+//       .attr("max", "100")
+//       .text(attackValue + "%");
+//     const defense = $("<div>").text("DEFENSE");
+//     const progress2 = $("<progress>")
+//       .addClass("progress is-success")
+//       .attr("value", defenseValue)
+//       .attr("max", "100")
+//       .text(defenseValue + "%");
+//     const stamina = $("<div>").text("STAMINA");
+//     const progress3 = $("<progress>")
+//       .addClass("progress is-info")
+//       .attr("value", staminaValue)
+//       .attr("max", "100")
+//       .text(staminaValue + "%");
+//     cardContent.append(
+//       attack,
+//       progress1,
+//       defense,
+//       progress2,
+//       stamina,
+//       progress3
+//     );
+//     card.append(cardImage, cardContent);
+//     $("main").append(card);
+//   }
+// }
