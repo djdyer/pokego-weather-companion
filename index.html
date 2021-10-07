@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>PokeGo! Weather Companion</title>
     <!-- <link rel="stylesheet" href="./reset.css" /> -->
     <link
@@ -10,21 +10,80 @@
       href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css"
     />
     <link rel="stylesheet" href="./style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito:wght@200&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
-    <header class="hero">
-      <div class="hero-body">
-        <img id="logo" src="./assets/logo/pokego_logo_final.png"/>
-      </div>
-    </header>
+    <!-- Logo -->
     <div>
-      <input id="input"></input>
-        <button class="button" id="search">Search</button>
+      <img id="logo" src="./assets/logo/pokego_logo_final.png" />
     </div>
-    <div></div>
-    <footer></footer>
+
+    <!-- Input block -->
+    <main>
+      <div class="box">
+        <p>
+          Find weather-boosted Pokémon in your area! Just enter your city below
+          and catch 'em all!
+        </p>
+        <input
+          class="input is-warning"
+          type="text"
+          placeholder="Enter your city"
+        />
+        <button class="button" id="search">SEARCH</button>
+      </div>
+    </main>
+
+    <!-- Characters footer -->
+    <footer>
+      <figure class="characters">
+        <img
+          id="char1"
+          class="flip-horizontally"
+          src="./assets/character_images/7.png"
+        />
+        <img
+          id="char2"
+          class="flip-horizontally"
+          src="./assets/character_images/46.png"
+        />
+        <img id="char3" src="./assets/character_images/25.png" />
+        <img id="char4" src="./assets/character_images/48.png" />
+        <img id="char5" src="./assets/character_images/55.png" />
+        <img id="char6" src="./assets/character_images/10.png" />
+
+        <img
+          id="char7"
+          class="flip-horizontally"
+          src="./assets/character_images/73.png"
+        />
+
+        <img
+          id="char8"
+          class="flip-horizontally"
+          src="./assets/character_images/77.png"
+        />
+        <img
+          id="char9"
+          class="flip-horizontally"
+          src="./assets/character_images/76.png"
+        />
+        <img
+          id="char10"
+          class="flip-horizontally"
+          src="./assets/character_images/100.png"
+        />
+        <img id="char11" src="./assets/character_images/116.png" />
+      </figure>
+    </footer>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
     <script src="./script.js"></script>
   </body>
 </html>
-

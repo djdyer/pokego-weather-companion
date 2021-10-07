@@ -1,24 +1,31 @@
+// DATE
+var date = moment();
+$("#date").text(date.format("dddd, MMM Do YYYY"));
+
 // Button & input field
-var searchBtn = $("#search").on("click", newSearch);
-var input = $("#input");
+$("#search").on("click", newSearch);
+var input = $(".input");
+
+// New search function takes city input to requestWeather
+function newSearch(event) {
+  event.preventDefault();
+  var city = input.val();
+  console.log(city);
+  requestWeather(city);
+  input.val("");
+  document.location.href = "main.html";
+}
 
 input.on("keypress", function (event) {
   if (event.keyCode === 13) {
     var city = input.val();
     requestWeather(city);
     input.val("");
+    document.location.href = "main.html";
   }
 });
 
-// New search function takes city input to requestWeather
-function newSearch(event) {
-  event.preventDefault();
-  var city = input.val();
-  requestWeather(city);
-  input.val("");
-}
-
-// Gets Weather
+// WEATHER
 function requestWeather(city) {
   var requestUrl =
     "https://api.openweathermap.org/data/2.5/weather?q=" +
@@ -51,7 +58,7 @@ var cloud = [804, 700, 711, 721, 731, 741, 751, 900];
 // Snow = Ice and Steel
 // Fog = Ghost and Dark
 
-//   PokemonGo - Types
+//  TYPES
 fetch("https://pokemon-go1.p.rapidapi.com/pokemon_types.json", {
   method: "GET",
   headers: {
@@ -68,14 +75,14 @@ fetch("https://pokemon-go1.p.rapidapi.com/pokemon_types.json", {
         return pokemon.form == "Normal";
       })
       .slice(0, 150);
-    console.log(newArray); // contains only Normal pokemon
-    printCard(data[0].pokemon_id, data[0].pokemon_name, data[0].type);
+    console.log("Types: ", newArray); // contains only 150 Normal pokemon
+    printCard(data[4].pokemon_id, data[4].pokemon_name, data[4].type);
   })
   .catch((err) => {
     console.error(err);
   });
 
-//   PokemonGo - Stats
+// STATS
 fetch("https://pokemon-go1.p.rapidapi.com/pokemon_stats.json", {
   method: "GET",
   headers: {
@@ -91,7 +98,56 @@ fetch("https://pokemon-go1.p.rapidapi.com/pokemon_stats.json", {
   });
 
 function printCard(id, name, type) {
+  const attackValue = 75;
+  const defenseValue = 100;
+  const staminaValue = 30;
   console.log(id);
   console.log(name);
   console.log(type);
+  const card = $("<div>").addClass("card");
+  const cardImage = $("<div>").addClass("card-image");
+  const figure = $("<figure>").addClass("image is-4by3");
+  const charImage = $("<img>").attr(
+    "src",
+    "./assets/character_images/" + id + ".png"
+  );
+  figure.append(charImage);
+  cardImage.append(figure);
+  const cardContent = $("<div>").addClass("card-content");
+  const media = $("<div>").addClass("media");
+  const mediaLeft = $("<div>").addClass("media-left");
+  const typeFigure = $("<figure>").addClass("image is-48x48");
+  const typeImage = $("<img>").attr(
+    "src",
+    "./assets/icons/" + type[0].toLowerCase() + ".png"
+  );
+  typeFigure.append(typeImage);
+  mediaLeft.append(typeFigure);
+  media.append(media);
+  const details = $("<div>").addClass("media-content");
+  const title = $("<p>").addClass("title is-4").text(name);
+  const subTitle = $("<p>").addClass("subtitle is-6").text("Boosted!");
+  details.append(title, subTitle);
+  media.append(media, details);
+  const attack = $("<div>").text("ATTACK");
+  const progress1 = $("<progress>")
+    .addClass("progress is-warning")
+    .attr("value", attackValue)
+    .attr("max", "100")
+    .text(attackValue + "%");
+  const defense = $("<div>").text("DEFENSE");
+  const progress2 = $("<progress>")
+    .addClass("progress is-success")
+    .attr("value", defenseValue)
+    .attr("max", "100")
+    .text(defenseValue + "%");
+  const stamina = $("<div>").text("STAMINA");
+  const progress3 = $("<progress>")
+    .addClass("progress is-info")
+    .attr("value", staminaValue)
+    .attr("max", "100")
+    .text(staminaValue + "%");
+  cardContent.append(attack, progress1, defense, progress2, stamina, progress3);
+  card.append(cardImage, cardContent);
+  $("main").append(card);
 }
