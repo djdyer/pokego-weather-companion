@@ -6,20 +6,28 @@ $("#date").text(date.format("dddd, MMM Do YYYY"));
 var searchBtn = $("#search").on("click", newSearch);
 var input = $("#input");
 
+// use local storage to display city and weather data on main html page
+if (localStorage.getItem("lastSearch")) {
+	requestWeather(localStorage.getItem("lastSearch"))
+}
 // New search function takes city input to requestWeather
 input.on("keypress", function (event) {
   if (event.keyCode === 13) {
     var city = input.val();
-    requestWeather(city);
+    localStorage.setItem("lastSearch", city)
+	 requestWeather(city);
     input.val("");
+	 document.location.href = "main.html";
   }
 });
 
 function newSearch(event) {
   event.preventDefault();
   var city = input.val();
+  localStorage.setItem("lastSearch", city)
   requestWeather(city);
   input.val("");
+  document.location.href = "main.html";
 }
 
 // WEATHER
@@ -32,11 +40,27 @@ function requestWeather(city) {
     .then(function (response) {
       return response.json();
     })
-    .then(function (data) {
-      console.log("Current Weather: ", data); // data holds today's weather object
-      setTimeout("location.href = 'main.html';", 1500);
-    });
+      .then(function (data) {
+			printMainData(
+				data.name,
+				data.main.temp,
+				data.main.humidity,
+				data.wind.speed
+			 );
+		console.log("Current Weather: ", data); // data holds today's weather object
+      // setTimeout("location.href = 'main.html';", 1500);
+   });
 }
+
+function printMainData(name, temp, humidity, speed) {
+	$("#city").text(name);
+	// $("section").attr("style", "display:inline");
+	var tempF = Math.round((temp - 273.15) * 1.8 + 32);
+	$("#temp").text(tempF + "°");
+	var wind = Math.round(speed);
+	$("#wind").text(wind + "mph");
+	$("#humid").text(humidity + "%");
+ }
 
 // Summarized weather scenarios & ids
 var storm = [200, 201, 202, 230, 231, 232, 233];
