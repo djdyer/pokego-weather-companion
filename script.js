@@ -9,6 +9,7 @@ input.on("keypress", function (event) {
     localStorage.setItem("city", city);
     redirect(city);
     input.val("");
+    document.location.href = "main.html";
   }
 });
 
@@ -19,6 +20,7 @@ function newSearch(event) {
   localStorage.setItem("city", city);
   redirect(city);
   input.val("");
+  document.location.href = "main.html";
 }
 
 // After redirect, call requestWeather and feed city parimeter
