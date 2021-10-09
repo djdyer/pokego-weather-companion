@@ -45,14 +45,16 @@ function requestWeather(city) {
 				data.name,
 				data.main.temp,
 				data.main.humidity,
-				data.wind.speed
+				data.wind.speed,
+        data.weather
 			 );
 		console.log("Current Weather: ", data); // data holds today's weather object
+		console.log("Current Weather: "); // data holds today's weather object
       // setTimeout("location.href = 'main.html';", 1500);
    });
 }
 
-function printMainData(name, temp, humidity, speed) {
+function printMainData(name, temp, humidity, speed, weather) {
 	$("#city").text(name);
 	// $("section").attr("style", "display:inline");
 	var tempF = Math.round((temp - 273.15) * 1.8 + 32);
@@ -60,7 +62,45 @@ function printMainData(name, temp, humidity, speed) {
 	var wind = Math.round(speed);
 	$("#wind").text(wind + "mph");
 	$("#humid").text(humidity + "%");
+  var weather_status = JSON.stringify(weather[0].main);
+  var weather_description = JSON.stringify(weather[0].description);
+  weather_status = weather_status.replace("\"", "");
+  weather_status = weather_status.replace("\"", "");
+  weather_description = weather_status.replace("\"", "");
+  weather_description = weather_status.replace("\"", "");
+  if(weather_status == "Clear")
+  {
+    $("#weather_status").attr("src", "assets/gifs/sun.gif");
+    console.log("Hi everybody")
+  }
+  else if(weather_status == "Clouds")
+  {
+    if(weather_description == "few clouds")
+    $("#weather_status").attr("src", "assets/gifs/partly_cloud.gif");
+    else
+    {
+      $("#weather_status").attr("src", "assets/gifs/cloud.gif");
+    }
+  }
+  else if(weather_status == "Drizzle")
+  {
+    $("#weather_status").attr("src", "assets/gifs/partly_rain.gif");
+  }
+  else if(weather_status == "Rain")
+  {
+    $("weather_status").attr("src", "assets/gifs/rain.gif");
+  }
+  else if(weather == "Thunderstorm")
+  {
+    $("#weather_status").attr("src", "assets/gifs/storm.gif");
+  }
+  else if(weather == "Snow")
+  {
+    $("#weather_status").attr("src", "assets/gifs/snow.gif");
+  }
  }
+
+ // Weather Status
 
 // Summarized weather scenarios & ids
 var storm = [200, 201, 202, 230, 231, 232, 233];
@@ -104,6 +144,8 @@ fetch("https://pokemon-go1.p.rapidapi.com/pokemon_types.json", {
     console.error(err);
   });
 
+ 
+  
 // STATS
 fetch("https://pokemon-go1.p.rapidapi.com/pokemon_stats.json", {
   method: "GET",
