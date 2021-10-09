@@ -177,8 +177,29 @@ main {
   box-shadow: 0 4px 20px 10px rgb(15, 40, 89);
 }
 
+.card-content {
+  padding-top: 0;
+}
+
+.title.is-4 {
+  font-size: 26pt;
+  margin: 30px 10px 30px 10px;
+}
+
+.subtitle.is-6 {
+  font-size: 18pt;
+  margin: 10px;
+}
+
 .media {
   align-items: center;
+  display: flex;
+  flex-direction: row;
+  height: 180px;
+}
+
+.media-left {
+  margin: 20px;
 }
 
 #icon1Title,

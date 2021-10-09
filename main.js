@@ -26,7 +26,28 @@ function requestWeather() {
       console.log(data.main.temp);
       console.log(data.main.humidity);
       console.log(data.wind.speed);
+      let weather = "";
+      if (
+        storm.includes(data.weather.id) ||
+        rain.includes(data.weather.id) ||
+        partlyRain.includes(data.weather.id)
+      ) {
+        weather = "Rainy";
+      } else if (snow.includes(data.weather.id)) {
+        weather = "Snow";
+      } else if (sun == data.weather.id) {
+        weather = "Sun";
+      } else if (partlyCloud.includes(data.weather.id)) {
+        weather = "Partly Cloudy";
+      } else if (data.weather.id == 700 || 751 || 771 || 781) {
+        weather = "Windy";
+      } else if (data.weather.id == 731 || 761 || 762 || 804) {
+        weather = "Cloudy";
+      } else if ((data.weather.id = 701 || 711 || 721 || 741)) {
+        weather = "Fog";
+      }
       printGif(data.weather[0].id);
+      getPokemonTypes(weather);
     });
 }
 
@@ -198,49 +219,109 @@ function printTypes(id) {
 }
 
 //  TYPES
-fetch("https://pokemon-go1.p.rapidapi.com/pokemon_types.json", {
-  method: "GET",
-  headers: {
-    "x-rapidapi-host": "pokemon-go1.p.rapidapi.com",
-    "x-rapidapi-key": "4be5ec2e63msh2818ea53452dcdcp12e586jsn7ea1810f83a2",
-  },
-})
-  .then((response) => {
-    return response.json();
+function getPokemonTypes(weather) {
+  fetch("https://pokemon-go1.p.rapidapi.com/pokemon_types.json", {
+    method: "GET",
+    headers: {
+      "x-rapidapi-host": "pokemon-go1.p.rapidapi.com",
+      "x-rapidapi-key": "4be5ec2e63msh2818ea53452dcdcp12e586jsn7ea1810f83a2",
+    },
   })
-  .then(function (data) {
-    var newArray = data
-      .filter(function (pokemon) {
-        return pokemon.form == "Normal";
-      })
-      .slice(0, 150);
-    console.log("Types: ", newArray); // contains only 150 Normal pokemon
-    printCard(newArray);
-  })
-  .catch((err) => {
-    console.error(err);
-  });
+    .then((response) => {
+      return response.json();
+    })
+    .then(function (data) {
+      var newArray = data
+        .filter(function (pokemon) {
+          return pokemon.form == "Normal";
+        })
+        .slice(0, 150);
+      console.log("Types: ", newArray); // contains only 150 Normal pokemon
 
+      newArray = newArray.filter(function (pokemon) {
+        if (weather === "Rainy" && pokemon.type.includes("Water")) {
+          return true;
+        } else if (weather === "Rainy" && pokemon.type.includes("Electric")) {
+          return true;
+        } else if (weather === "Rainy" && pokemon.type.includes("Bug")) {
+          return true;
+        } else if (weather === "Snow" && pokemon.type.includes("Ice")) {
+          return true;
+        } else if (weather === "Snow" && pokemon.type.includes("Steel")) {
+          return true;
+        } else if (weather === "Sun" && pokemon.type.includes("Grass")) {
+          return true;
+        } else if (weather === "Sun" && pokemon.type.includes("Ground")) {
+          return true;
+        } else if (weather === "Sun" && pokemon.type.includes("Fire")) {
+          return true;
+        } else if (
+          weather === "Partly Cloudy" &&
+          pokemon.type.includes("Normal")
+        ) {
+          return true;
+        } else if (
+          weather === "Partly Cloudy" &&
+          pokemon.type.includes("Rock")
+        ) {
+          return true;
+        } else if (weather === "Windy" && pokemon.type.includes("Dragon")) {
+          return true;
+        } else if (weather === "Windy" && pokemon.type.includes("Flying")) {
+          return true;
+        } else if (weather === "Windy" && pokemon.type.includes("Psychic")) {
+          return true;
+        } else if (weather === "Cloudy" && pokemon.type.includes("Fairy")) {
+          return true;
+        } else if (weather === "Cloudy" && pokemon.type.includes("Fighting")) {
+          return true;
+        } else if (weather === "Cloudy" && pokemon.type.includes("Poison")) {
+          return true;
+        } else if (weather === "Fog" && pokemon.type.includes("Ghost")) {
+          return true;
+        } else if (weather === "Fog" && pokemon.type.includes("Dark")) {
+          return true;
+        }
+      });
+      printCard(newArray);
+    })
+    .catch((err) => {
+      console.error(err);
+    });
+}
 // STATS
-fetch("https://pokemon-go1.p.rapidapi.com/pokemon_stats.json", {
-  method: "GET",
-  headers: {
-    "x-rapidapi-host": "pokemon-go1.p.rapidapi.com",
-    "x-rapidapi-key": "4be5ec2e63msh2818ea53452dcdcp12e586jsn7ea1810f83a2",
-  },
-})
-  .then((response) => {
-    console.log("Stats: ", response.json());
+function getPokemonStats() {
+  fetch("https://pokemon-go1.p.rapidapi.com/pokemon_stats.json", {
+    method: "GET",
+    headers: {
+      "x-rapidapi-host": "pokemon-go1.p.rapidapi.com",
+      "x-rapidapi-key": "4be5ec2e63msh2818ea53452dcdcp12e586jsn7ea1810f83a2",
+    },
   })
-  .catch((err) => {
-    console.error(err);
-  });
+    .then((response) => {
+      return response.json();
+    })
+    .then(function (data) {
+      var statsArray = data
+        .filter(function (pokemon) {
+          return pokemon.form == "Normal";
+        })
+        .slice(0, 150);
+      console.log("Stats: ", statsArray); // contains only 150 Normal pokemon stats
+      // printCard(statsArray);
+    })
+    .catch((err) => {
+      console.error(err);
+    });
+}
 
 function printCard(newArray) {
   for (var i = 0; i < newArray.length; i++) {
     const attackValue = 75;
     const defenseValue = 100;
     const staminaValue = 30;
+
+    // Creates card div, adds bulma classes, prints pokemon image
     const card = $("<div>").addClass("card");
     const cardImage = $("<div>").addClass("card-image");
     const figure = $("<figure>").addClass("image is-4by3");
@@ -248,8 +329,11 @@ function printCard(newArray) {
       "src",
       "./assets/character_images/" + newArray[i].pokemon_id + ".png"
     );
+    const flexDiv = $("<div>");
     figure.append(charImage);
     cardImage.append(figure);
+
+    // Creates card content div, prints type icon(s)
     const cardContent = $("<div>").addClass("card-content");
     const media = $("<div>").addClass("media");
     const mediaLeft = $("<div>").addClass("media-left");
@@ -258,25 +342,33 @@ function printCard(newArray) {
       "src",
       "./assets/icons/" + newArray[i].type[0] + ".png"
     );
-    const mediaLeft2 = $("<div>").addClass("media-left");
-    const typeFigure2 = $("<figure>").addClass("image is-48x48");
-    const typeImage2 = $("<img>").attr(
-      "src",
-      "./assets/icons/" + newArray[i].type[1] + ".png"
-    );
     typeFigure.append(typeImage);
-    typeFigure2.append(typeImage2);
     mediaLeft.append(typeFigure);
-    mediaLeft2.append(typeFigure2);
-    media.append(media);
+    flexDiv.append(mediaLeft);
 
+    // If second type available
+    if (newArray[i].type[1]) {
+      const mediaLeft2 = $("<div>").addClass("media-left");
+      const typeFigure2 = $("<figure>").addClass("image is-48x48");
+      const typeImage2 = $("<img>").attr(
+        "src",
+        "./assets/icons/" + newArray[i].type[1] + ".png"
+      );
+      typeFigure2.append(typeImage2);
+      mediaLeft2.append(typeFigure2);
+      flexDiv.append(mediaLeft2);
+    }
+    media.append(flexDiv);
+    // Creates card content div, to add title and subtitle
     const details = $("<div>").addClass("media-content");
-    const title = $("<p>")
+    const title = $("<h1>")
       .addClass("title is-4")
-      .text(newArray[i].pokemon_name);
-    const subTitle = $("<p>").addClass("subtitle is-6").text("Boosted!");
+      .text(newArray[i].pokemon_name.toUpperCase());
+    const subTitle = $("<h1>").addClass("subtitle is-6").text("Boosted!");
     details.append(title, subTitle);
     media.append(media, details);
+
+    // Creates card content div, to add pokemon stats
     const attack = $("<div>").text("ATTACK");
     const progress1 = $("<progress>")
       .addClass("progress is-warning")
@@ -303,7 +395,9 @@ function printCard(newArray) {
       stamina,
       progress3
     );
-    card.append(cardImage, cardContent);
+    card.append(cardImage, media, cardContent);
     $("main").append(card);
   }
 }
+
+getPokemonStats();
