@@ -26,6 +26,7 @@ function requestWeather() {
       console.log(data.main.temp);
       console.log(data.main.humidity);
       console.log(data.wind.speed);
+      console.log(data.weather[0].id);
       let weather = "";
       if (
         storm.includes(data.weather.id) ||
@@ -33,17 +34,17 @@ function requestWeather() {
         partlyRain.includes(data.weather.id)
       ) {
         weather = "Rainy";
-      } else if (snow.includes(data.weather.id)) {
+      } else if (snow.includes(data.weather[0].id)) {
         weather = "Snow";
-      } else if (sun == data.weather.id) {
+      } else if (sun == data.weather[0].id) {
         weather = "Sun";
-      } else if (partlyCloud.includes(data.weather.id)) {
+      } else if (partlyCloud.includes(data.weather[0].id)) {
         weather = "Partly Cloudy";
-      } else if (data.weather.id == 700 || 751 || 771 || 781) {
+      } else if (data.weather[0].id === 700 || 751 || 771 || 781) {
         weather = "Windy";
-      } else if (data.weather.id == 731 || 761 || 762 || 804) {
+      } else if (data.weather[0].id === 731 || 761 || 762 || 804) {
         weather = "Cloudy";
-      } else if ((data.weather.id = 701 || 711 || 721 || 741)) {
+      } else if ((data.weather[0].id === 701 || 711 || 721 || 741)) {
         weather = "Fog";
       }
       printGif(data.weather[0].id);
@@ -238,7 +239,7 @@ function getPokemonTypes(weather) {
         .slice(0, 150);
       console.log("Types: ", newArray); // contains only 150 Normal pokemon
 
-      newArray = newArray.filter(function (pokemon) {
+       return newArray = newArray.filter(function (pokemon) {
         if (weather === "Rainy" && pokemon.type.includes("Water")) {
           return true;
         } else if (weather === "Rainy" && pokemon.type.includes("Electric")) {
@@ -283,7 +284,31 @@ function getPokemonTypes(weather) {
           return true;
         }
       });
-      printCard(newArray);
+     
+    }).then((newArray)=>{
+      console.log(newArray) ;
+      fetch("https://pokemon-go1.p.rapidapi.com/pokemon_stats.json", {
+        method: "GET",
+        headers: {
+          "x-rapidapi-host": "pokemon-go1.p.rapidapi.com",
+          "x-rapidapi-key": "4be5ec2e63msh2818ea53452dcdcp12e586jsn7ea1810f83a2",
+        },
+      })
+        .then((response) => {
+          return response.json();
+        })
+        .then(function (data) {
+          var statsArray = data
+            .filter(function (pokemon) {
+              return pokemon.form == "Normal";
+            })
+            .slice(0, 150);
+          console.log("Stats: ", statsArray); // contains only 150 Normal pokemon stats
+           printCard(newArray,statsArray);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     })
     .catch((err) => {
       console.error(err);
@@ -308,19 +333,18 @@ function getPokemonStats() {
         })
         .slice(0, 150);
       console.log("Stats: ", statsArray); // contains only 150 Normal pokemon stats
-      // printCard(statsArray);
+       printCard(a,statsArray);
     })
     .catch((err) => {
-      console.error(err);
+      console.log(err);
     });
 }
 
-function printCard(newArray) {
-  for (var i = 0; i < newArray.length; i++) {
-    const attackValue = 75;
-    const defenseValue = 100;
-    const staminaValue = 30;
 
+
+function printCard(newArray, statsArray) {
+  for (var i = 0; i < newArray.length; i++) {
+    
     // Creates card div, adds bulma classes, prints pokemon image
     const card = $("<div>").addClass("card");
     const cardImage = $("<div>").addClass("card-image");
@@ -328,76 +352,90 @@ function printCard(newArray) {
     const charImage = $("<img>").attr(
       "src",
       "./assets/character_images/" + newArray[i].pokemon_id + ".png"
-    );
-    const flexDiv = $("<div>");
-    figure.append(charImage);
-    cardImage.append(figure);
-
-    // Creates card content div, prints type icon(s)
-    const cardContent = $("<div>").addClass("card-content");
-    const media = $("<div>").addClass("media");
-    const mediaLeft = $("<div>").addClass("media-left");
-    const typeFigure = $("<figure>").addClass("image is-48x48");
-    const typeImage = $("<img>").attr(
-      "src",
-      "./assets/icons/" + newArray[i].type[0] + ".png"
-    );
-    typeFigure.append(typeImage);
-    mediaLeft.append(typeFigure);
-    flexDiv.append(mediaLeft);
-
-    // If second type available
-    if (newArray[i].type[1]) {
-      const mediaLeft2 = $("<div>").addClass("media-left");
-      const typeFigure2 = $("<figure>").addClass("image is-48x48");
-      const typeImage2 = $("<img>").attr(
-        "src",
-        "./assets/icons/" + newArray[i].type[1] + ".png"
       );
-      typeFigure2.append(typeImage2);
-      mediaLeft2.append(typeFigure2);
-      flexDiv.append(mediaLeft2);
-    }
-    media.append(flexDiv);
-    // Creates card content div, to add title and subtitle
-    const details = $("<div>").addClass("media-content");
-    const title = $("<h1>")
-      .addClass("title is-4")
-      .text(newArray[i].pokemon_name.toUpperCase());
-    const subTitle = $("<h1>").addClass("subtitle is-6").text("Boosted!");
-    details.append(title, subTitle);
-    media.append(media, details);
+      const flexDiv = $("<div>");
+      figure.append(charImage);
+      cardImage.append(figure);
+      
+      // Creates card content div, prints type icon(s)
+      const cardContent = $("<div>").addClass("card-content");
+      const media = $("<div>").addClass("media");
+      const mediaLeft = $("<div>").addClass("media-left");
+      const typeFigure = $("<figure>").addClass("image is-48x48");
+      const typeImage = $("<img>").attr(
+        "src",
+        "./assets/icons/" + newArray[i].type[0] + ".png"
+        );
+        typeFigure.append(typeImage);
+        mediaLeft.append(typeFigure);
+        flexDiv.append(mediaLeft);
+        
+        // If second type available
+        if (newArray[i].type[1]) {
+          const mediaLeft2 = $("<div>").addClass("media-left");
+          const typeFigure2 = $("<figure>").addClass("image is-48x48");
+          const typeImage2 = $("<img>").attr(
+            "src",
+            "./assets/icons/" + newArray[i].type[1] + ".png"
+            );
+            typeFigure2.append(typeImage2);
+            mediaLeft2.append(typeFigure2);
+            flexDiv.append(mediaLeft2);
+          }
+          media.append(flexDiv);
+          // Creates card content div, to add title and subtitle
+          const details = $("<div>").addClass("media-content");
+          const title = $("<h1>")
+          .addClass("title is-4")
+          .text(newArray[i].pokemon_name.toUpperCase());
+          const subTitle = $("<h1>").addClass("subtitle is-6").text("Boosted!");
+          details.append(title, subTitle);
+          media.append(media, details);
+          for (var j = 0; j < statsArray.length; j++) {
+    
+            console.log(statsArray);
+            if(newArray[i].pokemon_id === statsArray[j].pokemon_id){
 
-    // Creates card content div, to add pokemon stats
-    const attack = $("<div>").text("ATTACK");
-    const progress1 = $("<progress>")
-      .addClass("progress is-warning")
-      .attr("value", attackValue)
-      .attr("max", "100")
-      .text(attackValue + "%");
-    const defense = $("<div>").text("DEFENSE");
-    const progress2 = $("<progress>")
-      .addClass("progress is-success")
-      .attr("value", defenseValue)
-      .attr("max", "100")
-      .text(defenseValue + "%");
-    const stamina = $("<div>").text("STAMINA");
-    const progress3 = $("<progress>")
-      .addClass("progress is-info")
-      .attr("value", staminaValue)
-      .attr("max", "100")
-      .text(staminaValue + "%");
-    cardContent.append(
-      attack,
-      progress1,
-      defense,
-      progress2,
-      stamina,
-      progress3
-    );
+              const attackValue = statsArray[j].base_attack;
+              console.log(attackValue)
+              const defenseValue = statsArray[j].base_defense;
+              const staminaValue = statsArray[j].base_stamina;
+              // Creates card content div, to add pokemon stats
+              
+              const attack = $("<div>").text("ATTACK");
+              const progress1 = $("<progress>")
+                .addClass("progress is-warning")
+                .attr("value", attackValue)
+                .attr("max", "200")
+                .text(attackValue + "%");
+              const defense = $("<div>").text("DEFENSE");
+              const progress2 = $("<progress>")
+                .addClass("progress is-success")
+                .attr("value", defenseValue)
+                .attr("max", "200")
+                .text(defenseValue + "%");
+              const stamina = $("<div>").text("STAMINA");
+              const progress3 = $("<progress>")
+                .addClass("progress is-info")
+                .attr("value", staminaValue)
+                .attr("max", "200")
+                .text(staminaValue + "%");
+              cardContent.append(
+                attack,
+                progress1,
+                defense,
+                progress2,
+                stamina,
+                progress3
+              );
+            }
+            
+          }
+       
     card.append(cardImage, media, cardContent);
     $("main").append(card);
   }
 }
+
 
 getPokemonStats();
