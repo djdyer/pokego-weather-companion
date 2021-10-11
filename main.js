@@ -422,11 +422,42 @@ function getPokemonStats() {
       console.log(err);
     });
 }
+// STATS
+// function getPokemonStats() {
+//   fetch("https://pokemon-go1.p.rapidapi.com/pokemon_stats.json", {
+//     method: "GET",
+//     headers: {
+//       "x-rapidapi-host": "pokemon-go1.p.rapidapi.com",
+//       "x-rapidapi-key": "4be5ec2e63msh2818ea53452dcdcp12e586jsn7ea1810f83a2",
+//     },
+//   })
+//     .then((response) => {
+//       return response.json();
+//     })
+//     .then(function (data) {
+//       var statsArray = data
+//         .filter(function (pokemon) {
+//           return pokemon.form == "Normal";
+//         })
+//         .slice(0, 150);
+//       console.log("Stats: ", statsArray); 
+//       console.log("bulbasuar stats: ", statsArray[0].base_attack)
+//       // contains only 150 Normal pokemon stats
+//    getCardStats(statsArray);
+//    })
+        
+//     .catch((err) => {
+//       console.error(err);
+//     });
+// }
 
-// Prints all Pokemon card results, including image, type icons, name, and 3 key stats.
 function printCard(newArray, statsArray) {
   for (var i = 0; i < newArray.length; i++) {
-    // Creates card div, adds bulma classes, prints Pokemon image
+    var attackValue = statsArray[i].base_attack;
+    var defenseValue = statsArray[i].base_defense;
+    var staminaValue = statsArray[i].base_stamina;
+
+    // Creates card div, adds bulma classes, prints pokemon image
     const card = $("<div>").addClass("card");
     const cardImage = $("<div>").addClass("card-image");
     const figure = $("<figure>").addClass("image is-4by3");
@@ -509,6 +540,34 @@ function printCard(newArray, statsArray) {
       }
     }
 
+  
+    // Creates card content div, to add pokemon stats
+    const attack = $("<div>").addClass(".attackStat").text("ATTACK: " + attackValue);
+    var progress1 = $("<progress>")
+      .addClass("progress is-warning")
+      .attr("value", attackValue)
+      .attr("max", "300")
+      .text(attackValue + "%");
+    const defense = $("<div>").addClass(".defenseStat").text("DEFENSE: " + defenseValue);
+    var progress2 = $("<progress>")
+      .addClass("progress is-success")
+      .attr("value", defenseValue)
+      .attr("max", "300")
+      .text(defenseValue + "%");
+    const stamina = $("<div>").addClass(".staminaStat").text("STAMINA: " + staminaValue);
+    var progress3 = $("<progress>")
+      .addClass("progress is-info")
+      .attr("value", staminaValue)
+      .attr("max", "300")
+      .text(staminaValue + "%");
+    cardContent.append(
+      attack,
+      progress1,
+      defense,
+      progress2,
+      stamina,
+      progress3
+    );
     card.append(cardImage, media, cardContent);
     $("main").append(card);
   }
