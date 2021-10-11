@@ -476,12 +476,6 @@ function printCard(newArray, statsArray) {
     const subTitle = $("<h1>").addClass("subtitle is-6").text("Boosted!");
     details.append(title, subTitle);
     media.append(media, details);
-    for (var j = 0; j < statsArray.length; j++) {
-      if (newArray[i].pokemon_id === statsArray[j].pokemon_id) {
-        const attackValue = statsArray[j].base_attack;
-        const defenseValue = statsArray[j].base_defense;
-        const staminaValue = statsArray[j].base_stamina;
-
         // Creates card content div, to add pokemon stats
         const attack = $("<div>").addClass(".attackStat").text("ATTACK: " + attackValue);
         var progress1 = $("<progress>")
@@ -511,15 +505,11 @@ function printCard(newArray, statsArray) {
         );
         card.append(cardImage, media, cardContent);
         $("main").append(card);
-      
+        }
       }
-    }
-
-  
-    // Creates card content div, to add pokemon stats
     
-  }
-}
+    
+
 
 getPokemonStats();
 
