@@ -56,28 +56,28 @@
 
      <!-- Displays Boosted icons -->
         <div id="boostedBlock">
-          <h1>CURRENTLY BOOSTED:</h1>
-          <p>Certain Pokémon will appear more frequently in weather conditions that correspond to their type. These Pokémon also tend to have higher CP and perform better in battle. As an added bonus, you will receive extra Stardust when you catch boosted Pokémon</p>
+          <h1>Currently Boosted in <span id="weatherType"></span> weather:</h1>
+          <p>Certain Pokémon will appear more frequently in weather conditions that correspond to their type. These Pokémon also tend to have higher CP and perform better in battle. As an added bonus, you will receive extra Stardust when you catch boosted Pokémon.</p>
           <div class="types">
             <div class="typeDetail">
               <img class="icons" id="icon1Img" src="./assets/icons/Fire.png"/>
               <div class="typesLock">
-                <h3 id="icon1Title">FIRE</h3>
-                <h4 id="typeDesc1">Fire-type species are based on land animals known for their predatory instincts, such as Pyroar, Arcanine, and Heatmor.</h4>
+                <h3 id="icon1Title"></h3>
+                <h4 id="typeDesc1"></h4>
               </div>
             </div>
             <div class="typeDetail">
               <img class="icons" id="icon2Img" src="./assets/icons/Grass.png"/>
               <div class="typesLock">
-                <h3 id="icon2Title">GRASS</h3>
-                <h4 id="typeDesc2">Based on real-world plants and fungi, not necessarily grass. Often paired with poison to reflect the toxicity of several plants.</h4>
+                <h3 id="icon2Title"></h3>
+                <h4 id="typeDesc2"></h4>
               </div>
             </div>
             <div class="typeDetail">
               <img class="icons" id="icon3Img" src="./assets/icons/Ground.png"/>
               <div class="typesLock">
-                <h3 id="icon3Title">GROUND</h3>
-                <h4 id="typeDesc3">Possess power and abilities related to control of ground and earth, normally found in caves or rocky terrain.</h4>
+                <h3 id="icon3Title"></h3>
+                <h4 id="typeDesc3"></h4>
               </div>
             </div>
           </div>
@@ -86,24 +86,40 @@
     </section>
 
     <!-- Dropdown menu -->
-    <div class="dropdown not-active">
+    
+    <div id="dropdown" class="dropdown not-active">
+      
       <div class="dropdown-trigger">
-        <button
-          class="button"
-          aria-haspopup="true"
-          aria-controls="dropdown-menu"
-        >
+        <button class="button" aria-haspopup="true" aria-controls="dropdown-menu2">
           <span>FILTER TYPE</span>
-          <span class="icon is-small">
+          <span class="icon is-large">
             <i class="fas fa-angle-down" aria-hidden="true"></i>
           </span>
         </button>
       </div>
-      <div class="dropdown-menu" id="dropdown-menu" role="menu">
+
+      <div class="dropdown-menu" id="dropdown-menu2" role="menu">
         <div class="dropdown-content">
-          <a href="#" class="dropdown-item"> Grass </a>
-          <a class="dropdown-item"> Ground </a>
-          <a href="#" class="dropdown-item is-active"> Fire </a>
+          
+          <div class="dropdown-item">
+            <img id="filterImg1" src="assets/icons/Grass.png"/>
+            <h3 id="filterTitle1"></h3>
+          </div>
+
+          <hr class="dropdown-divider">
+          
+          <div class="dropdown-item">
+            <img id="filterImg2" src="assets/icons/Ground.png"/>
+            <h3 id="filterTitle2"></h3>
+          </div>
+          
+          <hr class="dropdown-divider">
+
+          <div class="dropdown-item" id="lastItem">
+            <img id="filterImg3" src="assets/icons/Fire.png"/>
+            <h3 id="filterTitle3"></h3>
+          </div>
+
         </div>
       </div>
     </div>
