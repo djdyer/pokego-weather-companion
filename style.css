@@ -144,6 +144,11 @@ p {
   margin-right: -50px;
 }
 
+#char12 {
+  z-index: 0;
+  margin-left: -50px;
+}
+
 .flip-horizontally {
   transform: scaleX(-1);
 }
@@ -162,7 +167,8 @@ p {
   #char8,
   #char9,
   #char10,
-  #char11 {
+  #char11,
+  #char12 {
     display: none;
   }
 

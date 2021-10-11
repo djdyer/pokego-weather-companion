@@ -1,6 +1,7 @@
 body,
 html {
   background-color: #003a70;
+  height: 100vh;
 }
 
 header {
@@ -141,19 +142,79 @@ section {
   background-color: #003a70;
   color: #ffcb05;
   border-color: #094f90;
-  width: 200px;
+  width: 250px;
+  height: 75px;
   padding: 30px;
+  z-index: 2;
 }
 
 .button:hover {
   color: #003a70;
   background-color: #ffcb05;
+  z-index: 2;
+  border: 1px solid #ffcb05;
+}
+
+.button:focus {
+  color: #003a70;
+  background-color: #ffcb05;
+  border: 1px solid transparent;
+  z-index: 2;
 }
 
 span {
   font-family: "Nunito", sans-serif;
   font-size: 18pt;
   font-weight: bold;
+}
+
+.dropdown-menu {
+  width: 250px;
+  box-shadow: 0 14pt 30pt 1pt #001121;
+  background-color: transparent;
+  border-radius: 0 0 7pt 7pt;
+  padding: 0;
+  z-index: 1;
+}
+
+.dropdown-divider {
+  background-color: #003a70;
+  margin: 0;
+}
+
+.dropdown-item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background-color: transparent;
+  height: 85px;
+}
+
+.dropdown-content {
+  padding: 0;
+  background-color: #3d7dca;
+  border-radius: 0 0 7pt 7pt;
+}
+
+.dropdown-item:hover {
+  cursor: pointer;
+}
+
+#filterImg1,
+#filterImg2,
+#filterImg3 {
+  width: 60px;
+  margin-right: 15px;
+}
+
+#filterTitle1:hover,
+#filterTitle2:hover,
+#filterTitle3:hover {
+  font-weight: bolder;
+}
+
+#lastItem {
+  display: flex;
 }
 
 /* All cards */
@@ -178,7 +239,8 @@ main {
 }
 
 .card-content {
-  padding-top: 0;
+  padding-top: 10px;
+  background-color: rgb(249, 249, 249);
 }
 
 .title.is-4 {
@@ -195,7 +257,7 @@ main {
   align-items: center;
   display: flex;
   flex-direction: row;
-  height: 180px;
+  height: 160px;
 }
 
 .media-left {
