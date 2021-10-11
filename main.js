@@ -33,17 +33,17 @@ function requestWeather() {
         partlyRain.includes(data.weather.id)
       ) {
         weather = "Rainy";
-      } else if (snow.includes(data.weather.id)) {
+      } else if (snow.includes(data.weather[0].id)) {
         weather = "Snow";
-      } else if (sun == data.weather.id) {
+      } else if (sun == data.weather[0].id) {
         weather = "Sun";
-      } else if (partlyCloud.includes(data.weather.id)) {
+      } else if (partlyCloud.includes(data.weather[0].id)) {
         weather = "Partly Cloudy";
-      } else if (data.weather.id == 700 || 751 || 771 || 781) {
+      } else if (data.weather[0].id === 700 || 751 || 771 || 781) {
         weather = "Windy";
-      } else if (data.weather.id == 731 || 761 || 762 || 804) {
+      } else if (data.weather[0].id === 731 || 761 || 762 || 804) {
         weather = "Cloudy";
-      } else if ((data.weather.id = 701 || 711 || 721 || 741)) {
+      } else if ((data.weather[0].id === 701 || 711 || 721 || 741)) {
         weather = "Fog";
       }
       printGif(data.weather[0].id);
@@ -283,43 +283,67 @@ function getPokemonTypes(weather) {
           return true;
         }
       });
-      printCard(newArray);
+      return fetch("https://pokemon-go1.p.rapidapi.com/pokemon_stats.json", {
+        method: "GET",
+        headers: {
+          "x-rapidapi-host": "pokemon-go1.p.rapidapi.com",
+          "x-rapidapi-key": "4be5ec2e63msh2818ea53452dcdcp12e586jsn7ea1810f83a2",
+        },
+      })
+        .then((response) => {
+          return response.json();
+        })
+        .then(function (data) {
+          var statsArray = data
+            .filter(function (pokemon) {
+              return pokemon.form == "Normal";
+            })
+            .slice(0, 150);
+          console.log("Stats: ", statsArray); 
+          console.log("bulbasuar stats: ", statsArray[0].base_attack)
+          // contains only 150 Normal pokemon stats
+          printCard(newArray, statsArray); 
+       })
+           
     })
     .catch((err) => {
       console.error(err);
     });
 }
 // STATS
-function getPokemonStats() {
-  fetch("https://pokemon-go1.p.rapidapi.com/pokemon_stats.json", {
-    method: "GET",
-    headers: {
-      "x-rapidapi-host": "pokemon-go1.p.rapidapi.com",
-      "x-rapidapi-key": "4be5ec2e63msh2818ea53452dcdcp12e586jsn7ea1810f83a2",
-    },
-  })
-    .then((response) => {
-      return response.json();
-    })
-    .then(function (data) {
-      var statsArray = data
-        .filter(function (pokemon) {
-          return pokemon.form == "Normal";
-        })
-        .slice(0, 150);
-      console.log("Stats: ", statsArray); // contains only 150 Normal pokemon stats
-      // printCard(statsArray);
-    })
-    .catch((err) => {
-      console.error(err);
-    });
-}
+// function getPokemonStats() {
+//   fetch("https://pokemon-go1.p.rapidapi.com/pokemon_stats.json", {
+//     method: "GET",
+//     headers: {
+//       "x-rapidapi-host": "pokemon-go1.p.rapidapi.com",
+//       "x-rapidapi-key": "4be5ec2e63msh2818ea53452dcdcp12e586jsn7ea1810f83a2",
+//     },
+//   })
+//     .then((response) => {
+//       return response.json();
+//     })
+//     .then(function (data) {
+//       var statsArray = data
+//         .filter(function (pokemon) {
+//           return pokemon.form == "Normal";
+//         })
+//         .slice(0, 150);
+//       console.log("Stats: ", statsArray); 
+//       console.log("bulbasuar stats: ", statsArray[0].base_attack)
+//       // contains only 150 Normal pokemon stats
+//    getCardStats(statsArray);
+//    })
+        
+//     .catch((err) => {
+//       console.error(err);
+//     });
+// }
 
-function printCard(newArray) {
+function printCard(newArray, statsArray) {
   for (var i = 0; i < newArray.length; i++) {
-    const attackValue = 75;
-    const defenseValue = 100;
-    const staminaValue = 30;
+    var attackValue = statsArray[i].base_attack;
+    var defenseValue = statsArray[i].base_defense;
+    var staminaValue = statsArray[i].base_stamina;
 
     // Creates card div, adds bulma classes, prints pokemon image
     const card = $("<div>").addClass("card");
@@ -368,24 +392,25 @@ function printCard(newArray) {
     details.append(title, subTitle);
     media.append(media, details);
 
+  
     // Creates card content div, to add pokemon stats
-    const attack = $("<div>").text("ATTACK");
-    const progress1 = $("<progress>")
+    const attack = $("<div>").addClass(".attackStat").text("ATTACK: " + attackValue);
+    var progress1 = $("<progress>")
       .addClass("progress is-warning")
       .attr("value", attackValue)
-      .attr("max", "100")
+      .attr("max", "300")
       .text(attackValue + "%");
-    const defense = $("<div>").text("DEFENSE");
-    const progress2 = $("<progress>")
+    const defense = $("<div>").addClass(".defenseStat").text("DEFENSE: " + defenseValue);
+    var progress2 = $("<progress>")
       .addClass("progress is-success")
       .attr("value", defenseValue)
-      .attr("max", "100")
+      .attr("max", "300")
       .text(defenseValue + "%");
-    const stamina = $("<div>").text("STAMINA");
-    const progress3 = $("<progress>")
+    const stamina = $("<div>").addClass(".staminaStat").text("STAMINA: " + staminaValue);
+    var progress3 = $("<progress>")
       .addClass("progress is-info")
       .attr("value", staminaValue)
-      .attr("max", "100")
+      .attr("max", "300")
       .text(staminaValue + "%");
     cardContent.append(
       attack,
@@ -400,4 +425,26 @@ function printCard(newArray) {
   }
 }
 
-getPokemonStats();
+// function getCardStats(statsArray)
+//   {
+//     for(var i = 0; i < statsArray.length; i++){
+
+//       var attackValues = statsArray[i].base_attack; 
+//       var defenseValues = statsArray[i].base_defense;
+//       var staminaValues = statsArray[i].base_stamina;
+//       var values = $("#allCards .card .card-content .progress is-warning").text();
+//       if($(".title is-4").text() == statsArray[i].pokemon_name.toUpperCase())
+//       var value = $(".progress is-warning").attr("value", attackValues).text(attackValues + "%");
+//       $(".progress is-success").attr("value", defenseValues);
+//       $(".progress is-info").attr("value", staminaValues);
+//       $(".card-content").append(value);
+//       console.log(attackValues);
+//       console.log(value);
+  
+//     }
+//     console.log(values)
+  
+// }
+
+
+// getPokemonStats();
