@@ -98,19 +98,19 @@ function printWeather(name, temp, humidity, speed) {
 // Displays appropriate gif per weather id
 function printGif(id) {
   if (storm.includes(id)) {
-    $("#weather").attr("src", "./assets/gifs/storm.gif");
+    $("#weather").attr("src", "../assets/gifs/storm.gif");
   } else if (rain.includes(id)) {
-    $("#weather").attr("src", "./assets/gifs/rain.gif");
+    $("#weather").attr("src", "../assets/gifs/rain.gif");
   } else if (partlyRain.includes(id)) {
-    $("#weather").attr("src", "./assets/gifs/partly_rain.gif");
+    $("#weather").attr("src", "../assets/gifs/partly_rain.gif");
   } else if (snow.includes(id)) {
-    $("#weather").attr("src", "./assets/gifs/snow.gif");
+    $("#weather").attr("src", "../assets/gifs/snow.gif");
   } else if (sun == id) {
-    $("#weather").attr("src", "./assets/gifs/sun.gif");
+    $("#weather").attr("src", "../assets/gifs/sun.gif");
   } else if (partlyCloud.includes(id)) {
-    $("#weather").attr("src", "./assets/gifs/partly_cloud.gif");
+    $("#weather").attr("src", "../assets/gifs/partly_cloud.gif");
   } else if (cloud.includes(id)) {
-    $("#weather").attr("src", "./assets/gifs/cloud.gif");
+    $("#weather").attr("src", "../assets/gifs/cloud.gif");
   }
   printTypes(id);
 }
@@ -121,24 +121,24 @@ function printTypes(id) {
     $("#icon1Title").replaceWith("<h3>WATER</h3>");
     $("#filterTitle1").replaceWith("<h3>WATER</h3>");
     $("#filterTitle1").attr("style:hover", "font-weight:bolder");
-    $("#icon1Img").attr("src", "./assets/icons/Water.png");
-    $("#filterImg1").attr("src", "./assets/icons/Water.png");
+    $("#icon1Img").attr("src", "../assets/icons/Water.png");
+    $("#filterImg1").attr("src", "../assets/icons/Water.png");
     $("#typeDesc1").replaceWith(
       "<h4>Based on creatures that live on water, or use water for their disposition. Attacks involve use of water, or can be done only by marine creatures.</h4>"
     );
     $("#icon2Title").replaceWith("<h3>ELECTRIC</h3>");
     $("#filterTitle2").replaceWith("<h3>ELECTRIC</h3>");
     $("#filterTitle2").attr("style:hover", "font-weight:bolder");
-    $("#icon2Img").attr("src", "./assets/icons/Electric.png");
-    $("#filterImg2").attr("src", "./assets/icons/Electric.png");
+    $("#icon2Img").attr("src", "../assets/icons/Electric.png");
+    $("#filterImg2").attr("src", "../assets/icons/Electric.png");
     $("#typeDesc2").replaceWith(
       "<h4>Possess electro kinetic abilities, being able to control, store, or even produce electricity. Usually fast, with attacks that may paralyze their target.</h4>"
     );
     $("#icon3Title").replaceWith("<h3>BUG</h3>");
     $("#filterTitle3").replaceWith("<h3>BUG</h3>");
     $("#filterTitle3").attr("style:hover", "font-weight:bolder");
-    $("#icon3Img").attr("src", "./assets/icons/Bug.png");
-    $("#filterImg3").attr("src", "./assets/icons/Bug.png");
+    $("#icon3Img").attr("src", "../assets/icons/Bug.png");
+    $("#filterImg3").attr("src", "../assets/icons/Bug.png");
     $("#typeDesc3").replaceWith(
       "<h4>Characterized by rapid growth, not taking long to evolve. Based on real life invertebrates like spiders, scorpions, butterflies, and moths.</h4>"
     );
@@ -146,16 +146,16 @@ function printTypes(id) {
     $("#icon1Title").replaceWith("<h3>ICE</h3>");
     $("#filterTitle1").replaceWith("<h3>ICE</h3>");
     $("#filterTitle1").attr("style:hover", "font-weight:bolder");
-    $("#icon1Img").attr("src", "./assets/icons/Ice.png");
-    $("#filterImg1").attr("src", "./assets/icons/Ice.png");
+    $("#icon1Img").attr("src", "../assets/icons/Ice.png");
+    $("#filterImg1").attr("src", "../assets/icons/Ice.png");
     $("#typeDesc1").replaceWith(
       "<h4>Able to endure very low temperatures. Moves have chances of freezing the target, preventing counterattack until thawing.</h4>"
     );
     $("#icon2Title").replaceWith("<h3>STEEL</h3>");
     $("#filterTitle2").replaceWith("<h3>STEEL</h3>");
     $("#filterTitle2").attr("style:hover", "font-weight:bolder");
-    $("#icon2Img").attr("src", "./assets/icons/Steel.png");
-    $("#filterImg2").attr("src", "./assets/icons/Steel.png");
+    $("#icon2Img").attr("src", "../assets/icons/Steel.png");
+    $("#filterImg2").attr("src", "../assets/icons/Steel.png");
     $("#typeDesc2").replaceWith(
       "<h4>Great defense against physical and special attacks, with large number of resistances. Heavy weight often lowers speed.</h4>"
     );
@@ -167,24 +167,24 @@ function printTypes(id) {
     $("#icon1Title").replaceWith("<h3>FIRE</h3>");
     $("#filterTitle1").replaceWith("<h3>FIRE</h3>");
     $("#filterTitle1").attr("style:hover", "font-weight:bolder");
-    $("#icon1Img").attr("src", "./assets/icons/Fire.png");
-    $("#filterImg1").attr("src", "./assets/icons/Fire.png");
+    $("#icon1Img").attr("src", "../assets/icons/Fire.png");
+    $("#filterImg1").attr("src", "../assets/icons/Fire.png");
     $("#typeDesc1").replaceWith(
       "<h4>Fire-type species are based on land animals known for their predatory instincts, such as Pyroar, Arcanine, and Heatmor.</h4>"
     );
     $("#icon2Title").replaceWith("<h3>GRASS</h3>");
     $("#filterTitle2").replaceWith("<h3>GRASS</h3>");
     $("#filterTitle2").attr("style:hover", "font-weight:bolder");
-    $("#icon2Img").attr("src", "./assets/icons/Grass.png");
-    $("#filterImg2").attr("src", "./assets/icons/Grass.png");
+    $("#icon2Img").attr("src", "../assets/icons/Grass.png");
+    $("#filterImg2").attr("src", "../assets/icons/Grass.png");
     $("#typeDesc2").replaceWith(
       "<h4>Based on real-world plants and fungi, not necessarily grass. Often paired with poison to reflect the toxicity of several plants.</h4>"
     );
     $("#icon3Title").replaceWith("<h3>GROUND</h3>");
     $("#filterTitle3").replaceWith("<h3>GROUND</h3>");
     $("#filterTitle3").attr("style:hover", "font-weight:bolder");
-    $("#icon3Img").attr("src", "./assets/icons/Ground.png");
-    $("#filterImg3").attr("src", "./assets/icons/Ground.png");
+    $("#icon3Img").attr("src", "../assets/icons/Ground.png");
+    $("#filterImg3").attr("src", "../assets/icons/Ground.png");
     $("#typeDesc3").replaceWith(
       "<h4>Possess power and abilities related to control of ground and earth, normally found in caves or rocky terrain.</h4>"
     );
@@ -192,16 +192,16 @@ function printTypes(id) {
     $("#icon1Title").replaceWith("<h3>NORMAL</h3>");
     $("#filterTitle1").replaceWith("<h3>NORMAL</h3>");
     $("#filterTitle1").attr("style:hover", "font-weight:bolder");
-    $("#icon1Img").attr("src", "./assets/icons/Normal.png");
-    $("#filterImg1").attr("src", "./assets/icons/Normal.png");
+    $("#icon1Img").attr("src", "../assets/icons/Normal.png");
+    $("#filterImg1").attr("src", "../assets/icons/Normal.png");
     $("#typeDesc1").replaceWith(
       "<h4>Based on a variety of real-world animals. More moves than any other type, however many are status moves that don't inflict damage.</h4>"
     );
     $("#icon2Title").replaceWith("<h3>ROCK</h3>");
     $("#filterTitle2").replaceWith("<h3>ROCK</h3>");
     $("#filterTitle2").attr("style:hover", "font-weight:bolder");
-    $("#icon2Img").attr("src", "./assets/icons/Rock.png");
-    $("#filterImg2").attr("src", "./assets/icons/Rock.png");
+    $("#icon2Img").attr("src", "../assets/icons/Rock.png");
+    $("#filterImg2").attr("src", "../assets/icons/Rock.png");
     $("#typeDesc2").replaceWith(
       "<h4>Most are biological organisms covered with armor made of minerals. Has the most weaknesses and are not very fast.</h4>"
     );
@@ -213,24 +213,24 @@ function printTypes(id) {
     $("#icon1Title").replaceWith("<h3>DRAGON</h3>");
     $("#filterTitle1").replaceWith("<h3>DRAGON</h3>");
     $("#filterTitle1").attr("style:hover", "font-weight:bolder");
-    $("#icon1Img").attr("src", "./assets/icons/Dragon.png");
-    $("#filterImg1").attr("src", "./assets/icons/Dragon.png");
+    $("#icon1Img").attr("src", "../assets/icons/Dragon.png");
+    $("#filterImg1").attr("src", "../assets/icons/Dragon.png");
     $("#typeDesc1").replaceWith(
       "<h4>Often considered an ancestral type, as many are revered as deities. Usually reptilian in appearance, with stats suprassing most.</h4>"
     );
     $("#icon2Title").replaceWith("<h3>FLYING</h3>");
     $("#filterTitle2").replaceWith("<h3>FLYING</h3>");
     $("#filterTitle2").attr("style:hover", "font-weight:bolder");
-    $("#icon2Img").attr("src", "./assets/icons/Flying.png");
-    $("#filterImg2").attr("src", "./assets/icons/Flying.png");
+    $("#icon2Img").attr("src", "../assets/icons/Flying.png");
+    $("#filterImg2").attr("src", "../assets/icons/Flying.png");
     $("#typeDesc2").replaceWith(
       "<h4>Based on birds and insects, with power related to aerial and wind-related moves. Many have wings, but some float without.</h4>"
     );
     $("#icon3Title").replaceWith("<h3>PSYCHIC</h3>");
     $("#filterTitle3").replaceWith("<h3>PSYCHIC</h3>");
     $("#filterTitle3").attr("style:hover", "font-weight:bolder");
-    $("#icon3Img").attr("src", "./assets/icons/Psychic.png");
-    $("#filterImg3").attr("src", "./assets/icons/Psychic.png");
+    $("#icon3Img").attr("src", "../assets/icons/Psychic.png");
+    $("#filterImg3").attr("src", "../assets/icons/Psychic.png");
     $("#typeDesc3").replaceWith(
       "<h4>Considered the most powerful by most, posessing super intelligence. Many based on real scientific or mythological discoveries.</h4>"
     );
@@ -238,24 +238,24 @@ function printTypes(id) {
     $("#icon1Title").replaceWith("<h3>FAIRY</h3>");
     $("#filterTitle1").replaceWith("<h3>FAIRY</h3>");
     $("#filterTitle1").attr("style:hover", "font-weight:bolder");
-    $("#icon1Img").attr("src", "./assets/icons/Fairy.png");
-    $("#filterImg1").attr("src", "./assets/icons/Fairy.png");
+    $("#icon1Img").attr("src", "../assets/icons/Fairy.png");
+    $("#filterImg1").attr("src", "../assets/icons/Fairy.png");
     $("#typeDesc1").replaceWith(
       "<h4>Considered cute and elegant, tend to be pink in color and feminine in appearance. Do not underestimate, as they are often incredibly powerful.</h4>"
     );
     $("#icon2Title").replaceWith("<h3>FIGHTING</h3>");
     $("#filterTitle2").replaceWith("<h3>FIGHTING</h3>");
     $("#filterTitle2").attr("style:hover", "font-weight:bolder");
-    $("#icon2Img").attr("src", "./assets/icons/Fighting.png");
-    $("#filterImg2").attr("src", "./assets/icons/Fighting.png");
+    $("#icon2Img").attr("src", "../assets/icons/Fighting.png");
+    $("#filterImg2").attr("src", "../assets/icons/Fighting.png");
     $("#typeDesc2").replaceWith(
       "<h4>Specialists in melee attachks such as punches and kicks. Most have human-like body because they represent practitioners of various martial arts.</h4>"
     );
     $("#icon3Title").replaceWith("<h3>POISON</h3>");
     $("#filterTitle3").replaceWith("<h3>POISON</h3>");
     $("#filterTitle3").attr("style:hover", "font-weight:bolder");
-    $("#icon3Img").attr("src", "./assets/icons/Poison.png");
-    $("#filterImg3").attr("src", "./assets/icons/Poison.png");
+    $("#icon3Img").attr("src", "../assets/icons/Poison.png");
+    $("#filterImg3").attr("src", "../assets/icons/Poison.png");
     $("#typeDesc3").replaceWith(
       "<h4>Having a natural toxic quality, some directly represent real-world species known for their venom, such as snakes or even pollution itself.</h4>"
     );
@@ -263,16 +263,16 @@ function printTypes(id) {
     $("#icon1Title").replaceWith("<h3>GHOST</h3>");
     $("#filterTitle1").replaceWith("<h3>GHOST</h3>");
     $("#filterTitle1").attr("style:hover", "font-weight:bolder");
-    $("#icon1Img").attr("src", "./assets/icons/Ghost.png");
-    $("#filterImg1").attr("src", "./assets/icons/Ghost.png");
+    $("#icon1Img").attr("src", "../assets/icons/Ghost.png");
+    $("#filterImg1").attr("src", "../assets/icons/Ghost.png");
     $("#typeDesc1").replaceWith(
       "<h4>Usually connected to fear, the dark, and the afterlife. Tend to be extremely naughty, often pranking humans just to see their reactions.</h4>"
     );
     $("#icon2Title").replaceWith("<h3>DARK</h3>");
     $("#filterTitle2").replaceWith("<h3>DARK</h3>");
     $("#filterTitle2").attr("style:hover", "font-weight:bolder");
-    $("#icon2Img").attr("src", "./assets/icons/Dark.png");
-    $("#filterImg2").attr("src", "./assets/icons/Dark.png");
+    $("#icon2Img").attr("src", "../assets/icons/Dark.png");
+    $("#filterImg2").attr("src", "../assets/icons/Dark.png");
     $("#typeDesc2").replaceWith(
       "<h4>Represented from traits that evoke a negative leaning nature. Exhibits unusually cruel, crafty, and clever intelligence, and belligerent aggressiveness.</h4>"
     );
@@ -437,7 +437,7 @@ function printCard(newArray, statsArray) {
     const figure = $("<figure>").addClass("image is-4by3");
     const charImage = $("<img>").attr(
       "src",
-      "./assets/character_images/" + newArray[i].pokemon_id + ".png"
+      "../assets/character_images/" + newArray[i].pokemon_id + ".png"
     );
     const flexDiv = $("<div>");
     figure.append(charImage);
@@ -450,7 +450,7 @@ function printCard(newArray, statsArray) {
     const typeFigure = $("<figure>").addClass("image is-48x48");
     const typeImage = $("<img>").attr(
       "src",
-      "./assets/icons/" + newArray[i].type[0] + ".png"
+      "../assets/icons/" + newArray[i].type[0] + ".png"
     );
     typeFigure.append(typeImage);
     mediaLeft.append(typeFigure);
@@ -462,7 +462,7 @@ function printCard(newArray, statsArray) {
       const typeFigure2 = $("<figure>").addClass("image is-48x48");
       const typeImage2 = $("<img>").attr(
         "src",
-        "./assets/icons/" + newArray[i].type[1] + ".png"
+        "../assets/icons/" + newArray[i].type[1] + ".png"
       );
       typeFigure2.append(typeImage2);
       mediaLeft2.append(typeFigure2);
