@@ -13,7 +13,7 @@ var partlyRain = [300, 301, 500, 501, 520, 521];
 var snow = [600, 601, 602, 610, 611, 612, 613, 615, 616, 620, 621, 622, 623];
 
 // Sunny/Clear = Grass, Ground, and Fire
-var sun = 800;
+var sun = [800];
 
 // Partially Cloudy = Normal and Rock
 var partlyCloud = [801, 802, 803];
@@ -61,7 +61,7 @@ function requestWeather() {
         weather = "Rainy";
       } else if (snow.includes(data.weather[0].id)) {
         weather = "Snowy";
-      } else if (sun == data.weather[0].id) {
+      } else if (sun.includes(data.weather[0].id)) {
         weather = "Sunny";
       } else if (partlyCloud.includes(data.weather[0].id)) {
         weather = "Partly Cloudy";
@@ -318,15 +318,15 @@ function getPokemonTypes(weather) {
           return true;
         } else if (weather === "Rainy" && pokemon.type.includes("Bug")) {
           return true;
-        } else if (weather === "Snow" && pokemon.type.includes("Ice")) {
+        } else if (weather === "Snowy" && pokemon.type.includes("Ice")) {
           return true;
-        } else if (weather === "Snow" && pokemon.type.includes("Steel")) {
+        } else if (weather === "Snowy" && pokemon.type.includes("Steel")) {
           return true;
-        } else if (weather === "Sun" && pokemon.type.includes("Grass")) {
+        } else if (weather === "Sunny" && pokemon.type.includes("Grass")) {
           return true;
-        } else if (weather === "Sun" && pokemon.type.includes("Ground")) {
+        } else if (weather === "Sunny" && pokemon.type.includes("Ground")) {
           return true;
-        } else if (weather === "Sun" && pokemon.type.includes("Fire")) {
+        } else if (weather === "Sunny" && pokemon.type.includes("Fire")) {
           return true;
         } else if (
           weather === "Partly Cloudy" &&
@@ -350,9 +350,9 @@ function getPokemonTypes(weather) {
           return true;
         } else if (weather === "Cloudy" && pokemon.type.includes("Poison")) {
           return true;
-        } else if (weather === "Fog" && pokemon.type.includes("Ghost")) {
+        } else if (weather === "Foggy" && pokemon.type.includes("Ghost")) {
           return true;
-        } else if (weather === "Fog" && pokemon.type.includes("Dark")) {
+        } else if (weather === "Foggy" && pokemon.type.includes("Dark")) {
           return true;
         }
       }));
@@ -415,8 +415,6 @@ function getPokemonStats() {
         .slice(0, 150);
 
       console.log("Stats: ", statsArray); // contains only 150 Normal pokemon stats
-
-      printCard(a, statsArray);
     })
     .catch((err) => {
       console.log(err);
@@ -476,61 +474,61 @@ function printCard(newArray, statsArray) {
     const subTitle = $("<h1>").addClass("subtitle is-6").text("Boosted!");
     details.append(title, subTitle);
     media.append(media, details);
-        // Creates card content div, to add pokemon stats
-        const attack = $("<div>").addClass(".attackStat").text("ATTACK: " + attackValue);
-        var progress1 = $("<progress>")
-          .addClass("progress is-warning")
-          .attr("value", attackValue)
-          .attr("max", "300")
-          .text(attackValue + "%");
-        const defense = $("<div>").addClass(".defenseStat").text("DEFENSE: " + defenseValue);
-        var progress2 = $("<progress>")
-          .addClass("progress is-success")
-          .attr("value", defenseValue)
-          .attr("max", "300")
-          .text(defenseValue + "%");
-        const stamina = $("<div>").addClass(".staminaStat").text("STAMINA: " + staminaValue);
-        var progress3 = $("<progress>")
-          .addClass("progress is-info")
-          .attr("value", staminaValue)
-          .attr("max", "300")
-          .text(staminaValue + "%");
-        cardContent.append(
-          attack,
-          progress1,
-          defense,
-          progress2,
-          stamina,
-          progress3
-        );
-        card.append(cardImage, media, cardContent);
-        $("main").append(card);
-        }
-      }
-    
-    
-
+    // Creates card content div, to add pokemon stats
+    const attack = $("<div>")
+      .addClass(".attackStat")
+      .text("ATTACK: " + attackValue);
+    var progress1 = $("<progress>")
+      .addClass("progress is-warning")
+      .attr("value", attackValue)
+      .attr("max", "300")
+      .text(attackValue + "%");
+    const defense = $("<div>")
+      .addClass(".defenseStat")
+      .text("DEFENSE: " + defenseValue);
+    var progress2 = $("<progress>")
+      .addClass("progress is-success")
+      .attr("value", defenseValue)
+      .attr("max", "300")
+      .text(defenseValue + "%");
+    const stamina = $("<div>")
+      .addClass(".staminaStat")
+      .text("STAMINA: " + staminaValue);
+    var progress3 = $("<progress>")
+      .addClass("progress is-info")
+      .attr("value", staminaValue)
+      .attr("max", "300")
+      .text(staminaValue + "%");
+    cardContent.append(
+      attack,
+      progress1,
+      defense,
+      progress2,
+      stamina,
+      progress3
+    );
+    card.append(cardImage, media, cardContent);
+    $("main").append(card);
+  }
+}
 
 getPokemonStats();
 
 var filterStatus = false;
-$(".button").on("click", openFilter);
+$(".button").on("click", toggleFilter);
 
-function openFilter() {
-  filterStatus = true;
+function toggleFilter() {
+  filterStatus = !filterStatus;
   var element = $("#dropdown");
   element.removeClass("not-active");
   element.addClass("is-active");
-  if (filterStatus === true) {
-    $(".button").on("click", closeFilter);
+  if (filterStatus) {
+    element.removeClass("not-active");
+    element.addClass("is-active");
+  } else {
+    element.removeClass("is-active");
+    element.addClass("not-active");
   }
-}
-
-function closeFilter() {
-  var element = $("#dropdown");
-  element.removeClass("is-active");
-  element.addClass("not-active");
-  filterStatus = false;
 }
 
 $(".filterTitle1").on("click", filterFurther);

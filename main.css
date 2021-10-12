@@ -148,7 +148,7 @@ section {
   z-index: 2;
 }
 
-.button:hover {
+#filterButton:hover {
   color: #003a70;
   background-color: #ffcb05;
   z-index: 2;
