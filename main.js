@@ -68,6 +68,7 @@ function requestWeather() {
       } else if (partlyCloud.includes(data.weather[0].id)) {
         weather = "Partly Cloudy";
       } else if (data.weather[0].id === 700 || 751 || 771 || 781) {
+        console.log(data.weather[0].id);
         weather = "Windy";
       } else if (data.weather[0].id === 731 || 761 || 762 || 804) {
         weather = "Cloudy";

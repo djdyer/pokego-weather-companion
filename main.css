@@ -185,7 +185,7 @@ span {
 .dropdown-item {
   display: flex;
   flex-direction: row;
-  align-items: center;
+  justify-content: flex-start;
   background-color: transparent;
   height: 85px;
 }
