@@ -458,7 +458,7 @@ function printCard(newArray, statsArray) {
     const typeFigure = $("<figure>").addClass("image is-48x48");
     const typeImage = $("<img>").attr(
       "src",
-      "../assets/icons/" + newArray[i].type[0] + ".png"
+      "../assets/icons/" + newArray[i].type[0].toLowerCase() + ".png"
     );
     typeFigure.append(typeImage);
     mediaLeft.append(typeFigure);
@@ -470,7 +470,7 @@ function printCard(newArray, statsArray) {
       const typeFigure2 = $("<figure>").addClass("image is-48x48");
       const typeImage2 = $("<img>").attr(
         "src",
-        "../assets/icons/" + newArray[i].type[1] + ".png"
+        "../assets/icons/" + newArray[i].type[1].toLowerCase() + ".png"
       );
       typeFigure2.append(typeImage2);
       mediaLeft2.append(typeFigure2);
