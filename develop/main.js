@@ -116,10 +116,10 @@ function printGif(id) {
   } else if (windy.includes(id)) {
     $("#weather").attr("src", "../assets/gifs/cloud.gif");
   } else if (cloudy.includes(id)) {
-	$("#weather").attr("src", "../assets/gifs/cloud.gif");
+    $("#weather").attr("src", "../assets/gifs/cloud.gif");
   } else if (foggy.includes(id)) {
-	$("#weather").attr("src", "../assets/gifs/cloud.gif");
- }
+    $("#weather").attr("src", "../assets/gifs/cloud.gif");
+  }
   printTypes(id);
 }
 
