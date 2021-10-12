@@ -15,6 +15,7 @@
       href="https://fonts.googleapis.com/css2?family=Nunito:wght@200&display=swap"
       rel="stylesheet"
     />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
   </head>
   <body>
     <header>
@@ -90,7 +91,7 @@
     <div id="dropdown" class="dropdown not-active">
       
       <div class="dropdown-trigger">
-        <button class="button" aria-haspopup="true" aria-controls="dropdown-menu2">
+        <button class="button" id="filterButton" aria-haspopup="true" aria-controls="dropdown-menu2">
           <span>FILTER TYPE</span>
           <span class="icon is-large">
             <i class="fas fa-angle-down" aria-hidden="true"></i>
@@ -101,21 +102,21 @@
       <div class="dropdown-menu" id="dropdown-menu2" role="menu">
         <div class="dropdown-content">
           
-          <div class="dropdown-item">
+          <div class="dropdown-item button">
             <img id="filterImg1" src="assets/icons/Grass.png"/>
             <h3 id="filterTitle1"></h3>
           </div>
 
           <hr class="dropdown-divider">
           
-          <div class="dropdown-item">
+          <div class="dropdown-item button">
             <img id="filterImg2" src="assets/icons/Ground.png"/>
             <h3 id="filterTitle2"></h3>
           </div>
           
           <hr class="dropdown-divider">
 
-          <div class="dropdown-item" id="lastItem">
+          <div class="dropdown-item button" id="lastItem">
             <img id="filterImg3" src="assets/icons/Fire.png"/>
             <h3 id="filterTitle3"></h3>
           </div>
