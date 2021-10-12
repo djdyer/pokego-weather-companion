@@ -19,9 +19,13 @@ var sun = [800];
 var partlyCloud = [801, 802, 803];
 
 // Windy = Dragon, Flying, and Psychic
+var windy = [700, 751, 771, 781];
+
 // Cloudy = Fairy, Fighting, and Poison
+var cloudy = [731, 761, 762, 804];
+
 // Fog = Ghost and Dark
-var cloud = [700, 701, 711, 721, 731, 741, 751, 761, 762, 771, 781, 804];
+var foggy = [701, 711, 721, 741];
 
 // WEATHER API pulls city from local storage
 function requestWeather() {
@@ -67,12 +71,12 @@ function requestWeather() {
         weather = "Sunny";
       } else if (partlyCloud.includes(data.weather[0].id)) {
         weather = "Partly Cloudy";
-      } else if (data.weather[0].id === 700 || 751 || 771 || 781) {
+      } else if (windy.includes(data.weather[0].id)) {
         console.log(data.weather[0].id);
         weather = "Windy";
-      } else if (data.weather[0].id === 731 || 761 || 762 || 804) {
+      } else if (cloudy.includes(data.weather[0].id)) {
         weather = "Cloudy";
-      } else if (data.weather[0].id === 701 || 711 || 721 || 741) {
+      } else if (foggy.includes(data.weather[0].id)) {
         weather = "Foggy";
       }
       printGif(data.weather[0].id);
@@ -109,9 +113,13 @@ function printGif(id) {
     $("#weather").attr("src", "../assets/gifs/sun.gif");
   } else if (partlyCloud.includes(id)) {
     $("#weather").attr("src", "../assets/gifs/partly_cloud.gif");
-  } else if (cloud.includes(id)) {
+  } else if (windy.includes(id)) {
     $("#weather").attr("src", "../assets/gifs/cloud.gif");
-  }
+  } else if (cloudy.includes(id)) {
+	$("#weather").attr("src", "../assets/gifs/cloud.gif");
+  } else if (foggy.includes(id)) {
+	$("#weather").attr("src", "../assets/gifs/cloud.gif");
+ }
   printTypes(id);
 }
 
@@ -209,7 +217,7 @@ function printTypes(id) {
     $("#icon3Img").attr("style", "display:none");
     $("#typeDesc3").attr("style", "display:none");
     $("#lastItem").attr("style", "display:none");
-  } else if (id == 700 || 751 || 771 || 781) {
+  } else if (windy.includes(id)) {
     $("#icon1Title").replaceWith("<h3>DRAGON</h3>");
     $("#filterTitle1").replaceWith("<h3>DRAGON</h3>");
     $("#filterTitle1").attr("style:hover", "font-weight:bolder");
@@ -234,7 +242,7 @@ function printTypes(id) {
     $("#typeDesc3").replaceWith(
       "<h4>Considered the most powerful by most, posessing super intelligence. Many based on real scientific or mythological discoveries.</h4>"
     );
-  } else if (id == 731 || 761 || 762 || 804) {
+  } else if (cloudy.includes(id)) {
     $("#icon1Title").replaceWith("<h3>FAIRY</h3>");
     $("#filterTitle1").replaceWith("<h3>FAIRY</h3>");
     $("#filterTitle1").attr("style:hover", "font-weight:bolder");
@@ -259,7 +267,7 @@ function printTypes(id) {
     $("#typeDesc3").replaceWith(
       "<h4>Having a natural toxic quality, some directly represent real-world species known for their venom, such as snakes or even pollution itself.</h4>"
     );
-  } else if ((id = 701 || 711 || 721 || 741)) {
+  } else if (foggy.includes(id)) {
     $("#icon1Title").replaceWith("<h3>GHOST</h3>");
     $("#filterTitle1").replaceWith("<h3>GHOST</h3>");
     $("#filterTitle1").attr("style:hover", "font-weight:bolder");
