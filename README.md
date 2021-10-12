@@ -28,7 +28,7 @@ Using both the [OpenWeather One Call API](https://openweathermap.org/api/one-cal
 <li>David Dyer</li>
 <li>Jacklyn Malone</li>
 <li>Eric Mellin</li>
-<li>Kevin E</li>
+<li>Kevin Elmore</li>
 
 <br/>
 
