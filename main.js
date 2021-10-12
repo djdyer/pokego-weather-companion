@@ -36,7 +36,9 @@ function requestWeather() {
     })
     .then(function (data) {
       console.log("Current Weather: ", data); // data object holds current weather
-
+      if (data.cod == 404) {
+        document.location.href = "index.html";
+      }
       printWeather(
         data.name,
         data.main.temp,
@@ -384,6 +386,7 @@ function getPokemonTypes(weather) {
           console.log("Stats: ", statsArray); // contains stats for only 150 Normal Pokemon
 
           printCard(newArray, statsArray);
+          localStorage.setItem("boosted", JSON.stringify(newArray));
         })
         .catch((err) => {
           console.log(err);
@@ -531,11 +534,17 @@ function toggleFilter() {
   }
 }
 
-$(".filterTitle1").on("click", filterFurther);
-$(".filterTitle2").on("click", filterFurther);
-$(".filterTitle3").on("click", filterFurther);
+$("#filterTitle1").on("click", filterFurther);
+$("#filterTitle2").on("click", filterFurther);
+$("#filterTitle3").on("click", filterFurther);
+
+$("#testBtn").on("click", filterFurther);
 
 function filterFurther() {
+  console.log("hello");
+  var boosted = localStorage.getItem("boosted");
+  var filter = $(this);
+  console.log(filter);
   var element = $("#dropdown");
   element.removeClass("is-active");
   element.addClass("not-active");
