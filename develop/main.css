@@ -234,7 +234,7 @@ main {
   margin: 25px;
   box-shadow: 0 2px 2px rgb(38, 38, 39);
   padding: 20px;
-  width: 450px;
+  width: 500px;
   box-shadow: 0 4px 20px 10px rgb(15, 40, 89);
 }
 
@@ -287,6 +287,11 @@ main {
     flex-direction: column;
   }
 
+  header {
+    padding: 30px;
+    margin-bottom: 20px;
+  }
+
   a {
     font-size: 20pt;
     margin: auto 20px;
@@ -297,10 +302,20 @@ main {
   }
 
   #boostedBlock {
-    width: 450px;
+    width: 92%;
+  }
+
+  .card {
+    margin: 25px 0;
+    width: 99%;
+    padding: 40px;
   }
 
   .typeDetail {
     padding: 15px 0;
+  }
+
+  .dropdown {
+    margin: 0 40px;
   }
 }
