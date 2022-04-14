@@ -195,3 +195,53 @@ p {
     margin: auto;
   }
 }
+
+@media screen and (max-width: 500px) {
+  html,
+  body {
+    height: 100vh;
+  }
+
+  #logo {
+    width: 120px;
+    margin: 0;
+  }
+
+  .box {
+    padding: 20px;
+    margin-top: -50px;
+    z-index: 5;
+  }
+
+  p {
+    font-size: 12pt;
+  }
+
+  .input {
+    width: 80%;
+    margin: 20px 0;
+    padding: 15px;
+    font-size: 12pt;
+  }
+
+  .input::placeholder {
+    font-size: 12pt;
+    text-align: center;
+  }
+
+  .button {
+    width: 80%;
+    font-size: 12pt;
+  }
+
+  .characters {
+    height: 200px;
+    width: 200px;
+    /* margin: 50px -50px 0 -50px; */
+  }
+
+  #char3 {
+    z-index: 2;
+    margin-top: -50px;
+  }
+}

@@ -83,10 +83,17 @@ section {
 }
 
 #weatherBlock {
+  display: flex;
+  flex-direction: column;
   text-align: center;
   width: 30%;
   border-radius: 10px;
   margin: 0 100px;
+}
+
+#mobileFlex {
+  display: flex;
+  flex-direction: row;
 }
 
 #stats {
@@ -317,5 +324,110 @@ main {
 
   .dropdown {
     margin: 0 40px;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  #logo {
+    width: 200px;
+  }
+
+  header {
+    padding-right: 50px;
+  }
+
+  a {
+    font-size: 36pt;
+    margin: auto 30px;
+  }
+
+  #weatherBlock {
+    flex-direction: row;
+    width: 100%;
+    margin: 0;
+    align-items: center;
+  }
+
+  #weather {
+    width: 500px;
+  }
+
+  #mobileFlex {
+    display: flex;
+    flex-direction: row;
+  }
+
+  h1 {
+    font-size: 28pt;
+  }
+  h2 {
+    font-size: 24pt;
+  }
+
+  p {
+    font-size: 26pt;
+    margin: 30px 15px;
+    text-align: left;
+  }
+
+  h3 {
+    font-size: 28pt;
+    text-align: left;
+  }
+
+  h4 {
+    font-size: 20pt;
+  }
+
+  #weatherType {
+    font-size: 40pt;
+  }
+
+  #boostedBlock {
+    width: 95%;
+    height: auto;
+    border-width: 15px;
+    margin-top: 0;
+  }
+  .icons {
+    width: 100px;
+  }
+
+  span {
+    font-size: 28pt;
+    font-weight: 700;
+  }
+
+  .dropdown-menu {
+    width: 350px;
+  }
+
+  .dropdown-item {
+    height: 100px;
+  }
+
+  #filterImg1,
+  #filterImg2,
+  #filterImg3 {
+    width: 60px;
+    margin-right: 20px;
+  }
+
+  .button {
+    width: 350px;
+    height: 100px;
+  }
+
+  .title.is-4 {
+    font-size: 32pt;
+    margin: 30px 15px;
+  }
+
+  .subtitle.is-6 {
+    font-size: 32pt;
+  }
+
+  .text {
+    font-size: 50pt;
   }
 }
