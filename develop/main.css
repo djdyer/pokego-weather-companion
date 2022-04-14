@@ -91,11 +91,6 @@ section {
   margin: 0 100px;
 }
 
-#mobileFlex {
-  display: flex;
-  flex-direction: row;
-}
-
 #stats {
   display: flex;
   flex-direction: row;
@@ -352,11 +347,6 @@ main {
     width: 500px;
   }
 
-  #mobileFlex {
-    display: flex;
-    flex-direction: row;
-  }
-
   h1 {
     font-size: 28pt;
   }
@@ -424,10 +414,14 @@ main {
   }
 
   .subtitle.is-6 {
-    font-size: 32pt;
+    font-size: 28pt;
   }
 
   .text {
     font-size: 50pt;
+  }
+
+  .media {
+    margin-bottom: 0px;
   }
 }
