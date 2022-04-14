@@ -204,7 +204,7 @@ p {
 
   #logo {
     width: 120px;
-    margin: 0;
+    margin: 40px 0 0 0;
   }
 
   .box {
@@ -235,13 +235,13 @@ p {
   }
 
   .characters {
-    height: 200px;
-    width: 200px;
+    width: 300px;
+
     /* margin: 50px -50px 0 -50px; */
   }
 
   #char3 {
     z-index: 2;
-    margin-top: -50px;
+    margin-top: 0px;
   }
 }
