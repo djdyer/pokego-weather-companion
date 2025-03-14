@@ -68,6 +68,7 @@ h3 {
 h4 {
   font-family: "Nunito", sans-serif;
   font-size: 14pt;
+  line-height: 16pt;
   color: white;
 }
 
@@ -236,7 +237,7 @@ main {
 .card {
   margin: 25px;
   padding: 20px;
-  width: 500px;
+  width: 400px;
   box-shadow: 0 4px 20px 10px rgb(15, 40, 89);
 }
 
@@ -324,6 +325,5 @@ main {
 
   #weatherBlock {
     width: 100%;
-
   }
 }
