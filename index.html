@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>PokeGo! Weather Companion</title>
-    <!-- <link rel="stylesheet" href="./reset.css" /> -->
+    <link rel="stylesheet" href="./reset.css" />
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css"
@@ -18,28 +18,27 @@
     />
   </head>
   <body>
-    <!-- Logo -->
-    <div>
-      <img id="logo" src="./assets/logo/pokego_logo_final.png" />
-    </div>
-
-    <!-- Input block -->
     <main>
-      <div class="box">
-        <p>
-          Find weather-boosted Pokémon in your area! Just enter your city below
-          and catch 'em all!
-        </p>
-        <input
-          class="input is-warning"
-          id="input"
-          type="text"
-          placeholder="Enter your city"
-        />
-        <button class="button" id="search">SEARCH</button>
+      <div class="home-page-layout">
+        <!-- Logo -->
+        <img id="logo" src="./assets/logo/pokego_logo_final.png" />
+
+        <!-- Input block -->
+        <div class="box">
+          <p>
+            Find weather-boosted Pokémon in your area! Just enter your city
+            below and catch 'em all!
+          </p>
+          <input
+            class="input is-warning"
+            id="input"
+            type="text"
+            placeholder="Enter your city"
+          />
+          <button class="button" id="search">SEARCH</button>
+        </div>
       </div>
     </main>
-
     <!-- Characters footer -->
     <footer>
       <figure class="characters">
