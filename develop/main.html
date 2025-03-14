@@ -37,20 +37,22 @@
           <img id="weather" src="#" />
         </figure>
         <div>
-          <h1 id="city">City<h1>
-          <h1 id="date">Date<h1>
-        </div>
-        <div id="stats">
-          <div id="labels">
-            <h2>TEMP:</h2>
-            <h2>HUMIDITY:</h2>
-            <h2>WIND:</h2>
+          <div>
+            <h1 id="city">City<h1>
+            <h1 id="date">Date<h1>
           </div>
+          <div id="stats">
+            <div id="labels">
+              <h2>TEMP:</h2>
+              <h2>HUMIDITY:</h2>
+              <h2>WIND:</h2>
+            </div>
 
-          <div id="values">
-            <h2 id="temp"></h2>
-            <h2 id="humid"></h2>
-            <h2 id="wind"></h2>
+            <div id="values">
+              <h2 id="temp"></h2>
+              <h2 id="humid"></h2>
+              <h2 id="wind"></h2>
+            </div>
           </div>
         </div>
    </div>
@@ -100,30 +102,32 @@
 
       <div class="dropdown-menu" id="dropdown-menu2" role="menu">
         <div class="dropdown-content">
-          
-          <div class="dropdown-item button">
+          <div id="type_buttonOne">
+            <div class="dropdown-item button">
             <img id="filterImg1" src="#"/>
             <button id="filterTitle1"></button>
           </div>
+        </div>
+          
 
           <hr class="dropdown-divider">
-          
+          <div id="type_buttonTwo">
           <div class="dropdown-item button">
             <img id="filterImg2" src="#"/>
             <button id="filterTitle2"></button>
           </div>
+          </div>
           
           <hr class="dropdown-divider">
-
+          <div id="type_buttonThree">
           <div class="dropdown-item button" id="lastItem">
             <img id="filterImg3" src="#"/>
             <button id="filterTitle3"></button>
           </div>
-
+          </div>
         </div>
       </div>
     </div>
-
     <!-- All the cards -->
     <main id="allCards"> 
     </main>

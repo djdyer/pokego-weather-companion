@@ -125,6 +125,7 @@ function printGif(id) {
 
 // Fills boosted types box with icons, titles, descriptions.
 function printTypes(id) {
+  var typeArray = [];
   if (storm.includes(id) || rain.includes(id) || partlyRain.includes(id)) {
     $("#icon1Title").replaceWith("<h3>WATER</h3>");
     $("#filterTitle1").replaceWith("<h3>WATER</h3>");
@@ -288,7 +289,9 @@ function printTypes(id) {
     $("#icon3Img").attr("style", "display:none");
     $("#typeDesc3").attr("style", "display:none");
     $("#lastItem").attr("style", "display:none");
+    
   }
+
 }
 
 // Changes boosted types box header to include current weather condition
@@ -396,6 +399,7 @@ function getPokemonTypes(weather) {
 
           printCard(newArray, statsArray);
           localStorage.setItem("boosted", JSON.stringify(newArray));
+
         })
         .catch((err) => {
           console.log(err);
@@ -440,7 +444,7 @@ function printCard(newArray, statsArray) {
     var staminaValue = statsArray[i].base_stamina;
 
     // Creates card div, adds bulma classes, prints pokemon image
-    const card = $("<div>").addClass("card");
+    const card = $("<div>").addClass("card").attr('id', newArray[i].pokemon_name.toUpperCase());
     const cardImage = $("<div>").addClass("card-image");
     const figure = $("<figure>").addClass("image is-4by3");
     const charImage = $("<img>").attr(
@@ -543,17 +547,35 @@ function toggleFilter() {
   }
 }
 
-$("#filterTitle1").on("click", filterFurther);
-$("#filterTitle2").on("click", filterFurther);
-$("#filterTitle3").on("click", filterFurther);
-
-$("#testBtn").on("click", filterFurther);
+$("#type_buttonOne").on("click", filterFurther);
+$("#type_buttonTwo").on("click", filterFurther);
+$("#type_buttonThree").on("click", filterFurther);
 
 function filterFurther() {
-  console.log("hello");
+  $(".card").attr("style", "display: block;");
   var boosted = localStorage.getItem("boosted");
-  var filter = $(this);
-  console.log(filter);
+  var pokemonType = $(this).children().eq(0).children().eq(1).text();
+  var boostedPokemon = JSON.parse(boosted);
+   var pokemonfilterList = [];
+  for(var i = 0; i < boostedPokemon.length; i++){
+    for(var j = 0; j < boostedPokemon[i].type.length; j++){
+      var boostedType = boostedPokemon[i].type[j].toUpperCase();
+    if(boostedType === pokemonType) {
+      pokemonfilterList.push(boostedPokemon[i].pokemon_name.toUpperCase());
+    }
+  }
+  }
+  for(var i = 0; i < boostedPokemon.length; i++){
+    
+    // var pokemonName = pokemonfilterList[i].includes($(".card .media .media-content").text())
+    // // var pokemonNameOnly = pokemonName.replace("Boosted!", "");
+    console.log(boostedPokemon[i].pokemon_name)
+    if(!pokemonfilterList.includes(boostedPokemon[i].pokemon_name.toUpperCase())){
+    $("#" + boostedPokemon[i].pokemon_name.toUpperCase()).attr("style","display: none;");
+    }
+  }
+  
+  
   var element = $("#dropdown");
   element.removeClass("is-active");
   element.addClass("not-active");
